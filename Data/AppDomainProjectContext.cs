@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using AppDomainProject.Models;
 
 namespace AppDomainProject.Models
 {
@@ -13,6 +14,9 @@ namespace AppDomainProject.Models
         {
         }
 
+
         public DbSet<LoginData> LoginData { get; set; }
+
+        public DbSet<UserInfoData> UserInfoData { get; set; }
     }
 }
