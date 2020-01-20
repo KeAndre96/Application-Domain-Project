@@ -1,5 +1,6 @@
 ﻿@page
-@model AppDomainProject.Pages.Login.EditModel
+@model AppDomainProject.Pages.Data.Login.EditModel
+@using AppDomainProject.Models;
 
 @{
     ViewData["Title"] = "Edit";
@@ -18,6 +19,16 @@
                 <label asp-for="LoginData.Password" class="control-label"></label>
                 <input asp-for="LoginData.Password" class="form-control" />
                 <span asp-validation-for="LoginData.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoginData.Status" class="control-label"></label>
+                <select asp-for="LoginData.Status" class="form-control", asp-items="Html.GetEnumSelectList<AccountStatus>()"></select>
+                <span asp-validation-for="LoginData.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoginData.Class" class="control-label"></label>
+                <select asp-for="LoginData.Class" class="form-control", asp-items="Html.GetEnumSelectList<AccountType>()"></select>
+                <span asp-validation-for="LoginData.Class" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

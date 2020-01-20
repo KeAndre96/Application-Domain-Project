@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using AppDomainProject.Models;
 
-namespace AppDomainProject.Pages.Login
+namespace AppDomainProject.Pages.Data.Login
 {
     public class DetailsModel : PageModel
     {

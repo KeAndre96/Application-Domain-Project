@@ -1,5 +1,5 @@
 ﻿@page
-@model AppDomainProject.Pages.Login.DeleteModel
+@model AppDomainProject.Pages.Data.Login.DeleteModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -17,6 +17,18 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.LoginData.Password)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LoginData.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LoginData.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LoginData.Class)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LoginData.Class)
         </dd>
     </dl>
     

@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AppDomainProject.Models;
 
-namespace AppDomainProject.Pages.Login
+namespace AppDomainProject.Pages.Data.Login
 {
     public class EditModel : PageModel
     {
-        private readonly AppDomainProjectContext _context;
+        private readonly AppDomainProject.Models.AppDomainProjectContext _context;
 
-        public EditModel(AppDomainProjectContext context)
+        public EditModel(AppDomainProject.Models.AppDomainProjectContext context)
         {
             _context = context;
         }

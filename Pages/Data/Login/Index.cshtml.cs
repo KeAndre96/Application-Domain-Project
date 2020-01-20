@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using AppDomainProject.Models;
 
-namespace AppDomainProject.Pages.Login
+namespace AppDomainProject.Pages.Data.Login
 {
     public class IndexModel : PageModel
     {
-        private readonly AppDomainProjectContext _context;
+        private readonly AppDomainProject.Models.AppDomainProjectContext _context;
 
-        public IndexModel(AppDomainProjectContext context)
+        public IndexModel(AppDomainProject.Models.AppDomainProjectContext context)
         {
             _context = context;
         }

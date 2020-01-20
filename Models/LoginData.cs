@@ -11,6 +11,7 @@ namespace AppDomainProject.Models
         [Key]
         public string ID { get; set; }
 
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         
         public AccountStatus Status { get; set; }

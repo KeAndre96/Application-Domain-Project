@@ -1,5 +1,5 @@
 ﻿@page
-@model AppDomainProject.Pages.Login.IndexModel
+@model AppDomainProject.Pages.Data.Login.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -16,6 +16,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.LoginData[0].Password)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoginData[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoginData[0].Class)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -24,6 +30,12 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

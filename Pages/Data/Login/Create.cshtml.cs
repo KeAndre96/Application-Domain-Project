@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AppDomainProject.Models;
 
-namespace AppDomainProject.Pages.Login
+namespace AppDomainProject.Pages.Data.Login
 {
     public class CreateModel : PageModel
     {
-        private readonly AppDomainProjectContext _context;
+        private readonly AppDomainProject.Models.AppDomainProjectContext _context;
 
-        public CreateModel(AppDomainProjectContext context)
+        public CreateModel(AppDomainProject.Models.AppDomainProjectContext context)
         {
             _context = context;
         }
