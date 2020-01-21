@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AppDomainProject.Models;
 
-namespace AppDomainProject.Pages.Data.Login
+namespace AppDomainProject.Pages.Data.PersonalInfo
 {
     public class CreateModel : PageModel
     {
@@ -24,7 +24,7 @@ namespace AppDomainProject.Pages.Data.Login
         }
 
         [BindProperty]
-        public LoginData LoginData { get; set; }
+        public PersonalInfoData PersonalInfoData { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -35,7 +35,7 @@ namespace AppDomainProject.Pages.Data.Login
                 return Page();
             }
 
-            _context.LoginData.Add(LoginData);
+            _context.PersonalInfoData.Add(PersonalInfoData);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

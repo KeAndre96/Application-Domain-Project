@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using AppDomainProject.Models;
 
-namespace AppDomainProject.Pages.Data.Login
+namespace AppDomainProject.Pages.Data.Password
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace AppDomainProject.Pages.Data.Login
         }
 
         [BindProperty]
-        public LoginData LoginData { get; set; }
+        public PasswordData PasswordData { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -28,9 +28,9 @@ namespace AppDomainProject.Pages.Data.Login
                 return NotFound();
             }
 
-            LoginData = await _context.LoginData.FirstOrDefaultAsync(m => m.ID == id);
+            PasswordData = await _context.LoginData.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (LoginData == null)
+            if (PasswordData == null)
             {
                 return NotFound();
             }
@@ -44,11 +44,11 @@ namespace AppDomainProject.Pages.Data.Login
                 return NotFound();
             }
 
-            LoginData = await _context.LoginData.FindAsync(id);
+            PasswordData = await _context.LoginData.FindAsync(id);
 
-            if (LoginData != null)
+            if (PasswordData != null)
             {
-                _context.LoginData.Remove(LoginData);
+                _context.LoginData.Remove(PasswordData);
                 await _context.SaveChangesAsync();
             }
 

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AppDomainProject.Models;
 
-namespace AppDomainProject.Pages.Data.Login
+namespace AppDomainProject.Pages.Data.Password
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace AppDomainProject.Pages.Data.Login
         }
 
         [BindProperty]
-        public LoginData LoginData { get; set; }
+        public PasswordData PasswordData { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -29,9 +29,9 @@ namespace AppDomainProject.Pages.Data.Login
                 return NotFound();
             }
 
-            LoginData = await _context.LoginData.FirstOrDefaultAsync(m => m.ID == id);
+            PasswordData = await _context.LoginData.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (LoginData == null)
+            if (PasswordData == null)
             {
                 return NotFound();
             }
@@ -47,7 +47,7 @@ namespace AppDomainProject.Pages.Data.Login
                 return Page();
             }
 
-            _context.Attach(LoginData).State = EntityState.Modified;
+            _context.Attach(PasswordData).State = EntityState.Modified;
 
             try
             {
@@ -55,7 +55,7 @@ namespace AppDomainProject.Pages.Data.Login
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LoginDataExists(LoginData.ID))
+                if (!PasswordDataExists(PasswordData.ID))
                 {
                     return NotFound();
                 }
@@ -68,7 +68,7 @@ namespace AppDomainProject.Pages.Data.Login
             return RedirectToPage("./Index");
         }
 
-        private bool LoginDataExists(string id)
+        private bool PasswordDataExists(string id)
         {
             return _context.LoginData.Any(e => e.ID == id);
         }

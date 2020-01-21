@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using AppDomainProject.Models;
 
-namespace AppDomainProject.Pages.Data.Login
+namespace AppDomainProject.Pages.Data.Password
 {
     public class IndexModel : PageModel
     {
@@ -18,11 +18,11 @@ namespace AppDomainProject.Pages.Data.Login
             _context = context;
         }
 
-        public IList<LoginData> LoginData { get;set; }
+        public IList<PasswordData> PasswordData { get;set; }
 
         public async Task OnGetAsync()
         {
-            LoginData = await _context.LoginData.ToListAsync();
+            PasswordData = await _context.LoginData.ToListAsync();
         }
     }
 }

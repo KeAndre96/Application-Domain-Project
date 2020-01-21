@@ -14,16 +14,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserInfoData[0].FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserInfoData[0].LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserInfoData[0].DOB)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.UserInfoData[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserInfoData[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserInfoData[0].Class)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserInfoData[0].PasswordSetDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserInfoData[0].PasswordExpirationDate)
             </th>
             <th></th>
         </tr>
@@ -32,16 +35,19 @@
 @foreach (var item in Model.UserInfoData) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DOB)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PasswordSetDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PasswordExpirationDate)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

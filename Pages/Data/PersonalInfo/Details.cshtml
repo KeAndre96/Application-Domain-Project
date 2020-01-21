@@ -1,0 +1,43 @@
+﻿@page
+@model AppDomainProject.Pages.Data.PersonalInfo.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>PersonalInfoData</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PersonalInfoData.FirtsName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PersonalInfoData.FirtsName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PersonalInfoData.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PersonalInfoData.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PersonalInfoData.DOB)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PersonalInfoData.DOB)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PersonalInfoData.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PersonalInfoData.Address)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.PersonalInfoData.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

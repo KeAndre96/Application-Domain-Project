@@ -11,13 +11,31 @@ namespace AppDomainProject.Models
         [Key]
         public string ID { get; set; }
 
-        public string FirstName { get; set; }
+        public string Email { get; set; }
 
-        public string LastName { get; set; }
+        public AccountStatus Status { get; set; }
+
+        public AccountType Class { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime DOB { get; set; }
+        public DateTime PasswordSetDate { get; set; }
 
-        public string Email { get; set; }
+        [DataType(DataType.Date)]
+        public DataType PasswordExpirationDate { get; set; }
+
+    }
+
+    public enum AccountStatus
+    {
+        Active,
+        Inactive,
+        Suspended
+    }
+
+    public enum AccountType
+    {
+        Admin,
+        Manager,
+        User
     }
 }

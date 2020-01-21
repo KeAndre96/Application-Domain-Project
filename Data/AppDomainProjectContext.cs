@@ -15,8 +15,10 @@ namespace AppDomainProject.Models
         }
 
 
-        public DbSet<LoginData> LoginData { get; set; }
+        public DbSet<PasswordData> LoginData { get; set; }
 
         public DbSet<UserInfoData> UserInfoData { get; set; }
+
+        public DbSet<PersonalInfoData> PersonalInfoData { get; set; }
     }
 }

@@ -57,7 +57,7 @@ namespace AppDomainProject.Pages
             var users = await query.ToListAsync();
             if (users.Count != 1)
                 return false;
-            LoginData user = users[0];
+            PasswordData user = users[0];
             return user.Password.Equals(Pass);
         }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppDomainProject.Models
 {
-    public class LoginData
+    public class PasswordData
     {
         [Key]
         public string ID { get; set; }
@@ -14,22 +14,12 @@ namespace AppDomainProject.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
         
-        public AccountStatus Status { get; set; }
+        public string SecurityAnswer1 { get; set; }
 
-        public AccountType Class { get; set; }
+        public string SecurityAnswer2 { get; set; }
+
+        public string SecurityAnswer3 { get; set; }
     }
 
-    public enum AccountStatus
-    {
-        Active,
-        Inactive,
-        Suspended
-    }
-
-    public enum AccountType
-    {
-        Admin,
-        Manager,
-        User
-    }
+    
 }
