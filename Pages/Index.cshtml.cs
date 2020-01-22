@@ -39,7 +39,7 @@ namespace AppDomainProject.Pages
         {
             if (await ValidateAsync())
             {
-                return RedirectToPage("./Login/Index");
+                return GetDashboard();
             }
             else
             {
@@ -59,6 +59,22 @@ namespace AppDomainProject.Pages
                 return false;
             PasswordData user = users[0];
             return user.Password.Equals(Pass);
+        }
+
+        private IActionResult GetDashboard()
+        {
+            var query = from u in _context.UserInfoData select u;
+            query = query.Where(m => m.ID.Equals(Id));
+            UserInfoData info = query.FirstOrDefault();
+            switch (info.Class)
+            {
+                case AccountType.Admin:  return Redirect("Admin/" + Id); 
+                case AccountType.Manager: return Redirect("Manager/" + Id); 
+                case AccountType.User: return Redirect("User/" + Id); 
+                default: return NotFound();
+            }
+            
+            
         }
     }
 }

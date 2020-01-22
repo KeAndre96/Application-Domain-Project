@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppDomainProject.Migrations
 {
     [DbContext(typeof(AppDomainProjectContext))]
-    [Migration("20200120234800_reset")]
+    [Migration("20200122165148_reset")]
     partial class reset
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0")
+                .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -76,8 +76,8 @@ namespace AppDomainProject.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PasswordExpirationDate")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("PasswordExpirationDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("PasswordSetDate")
                         .HasColumnType("datetime2");
