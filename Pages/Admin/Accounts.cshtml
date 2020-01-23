@@ -28,7 +28,7 @@
 	{
 <tr>
 	<td>
-		@Html.DisplayFor(modelItem => u.ID)
+		@Html.DisplayFor(modelItem => u.ID) <form method="post"><input type="submit" value="Details" asp-page-handler="AcctDetails" , asp-route-id=@u.ID /></form>
 	</td>
 	<td>
 		@Html.DisplayFor(modelItem => u.Email)
@@ -37,8 +37,9 @@
 		@Html.DisplayFor(modelItem => u.Class)
 	</td>
 	<td>
-		@Html.DisplayFor(modelItem => u.Status) <form method="post"><input type="submit" value=@Model.GetUpdateText(u) asp-route-id=@u.ID asp-route-status=@Model.GetToggleStatus(u) asp-page-handler="AcctToggle" /></form>
-</td>
+		@Html.DisplayFor(modelItem => u.Status) <form method="post"><input type="submit" value=@Model.GetUpdateText(u) asp-page-handler="AcctToggle" asp-route-id=@u.ID asp-route-status=@Model.GetToggleStatus(u) /></form>
+	</td>
+
 </tr>
 	}
 

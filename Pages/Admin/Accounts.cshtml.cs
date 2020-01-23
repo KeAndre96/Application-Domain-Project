@@ -42,6 +42,13 @@ namespace AppDomainProject.Pages.Admin
             return Redirect("./Accounts");
         }
 
+        public IActionResult OnPostAcctDetails(string id)
+        {
+            return Redirect($"./View_Edit?id={id}");
+        }
+
+        //PAGE HELPERS
+
         public int GetToggleStatus(UserInfoData u)
         {
             return u.Status == AccountStatus.Active ? (int)AccountStatus.Inactive : (int)AccountStatus.Active;
