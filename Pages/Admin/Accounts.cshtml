@@ -37,8 +37,8 @@
 		@Html.DisplayFor(modelItem => u.Class)
 	</td>
 	<td>
-		@Html.DisplayFor(modelItem => u.Status)
-	</td>
+		@Html.DisplayFor(modelItem => u.Status) <form method="post"><input type="submit" value=@Model.GetUpdateText(u) asp-route-id=@u.ID asp-route-status=@Model.GetToggleStatus(u) asp-page-handler="AcctToggle" /></form>
+</td>
 </tr>
 	}
 
