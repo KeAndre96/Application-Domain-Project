@@ -20,6 +20,7 @@ namespace AppDomainProject.Pages
 
         [Display(Name = "Password")]
         [BindProperty]
+        [DataType(DataType.Password)]
         public string Pass { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, AppDomainProjectContext context)
@@ -47,7 +48,7 @@ namespace AppDomainProject.Pages
             }
         }
 
-        private async Task<bool> ValidateAsync()
+            private async Task<bool> ValidateAsync()
         {
             var query = from u in _context.LoginData select u;
             if (!string.IsNullOrEmpty(Id) && !string.IsNullOrEmpty(Pass))

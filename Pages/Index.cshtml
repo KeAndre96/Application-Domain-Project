@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
@@ -13,16 +13,16 @@
 		</div>
 		<div class="form-group">
 			<label asp-for="Pass" class="control-label"></label>
-			<input asp-for="Pass" type="password" class="control-label" />
+			<input asp-for="Pass" class="control-label" />
 		</div>
 		<div class="form-group">
 			<input type="submit" value="Log In" class="btn btn-primary" />
 		</div>
 		<div class="form-group">
-			<input type="submit" value="Create New User" class="btn btn-primary" />
+			<input type="submit" value="Create New User" class="btn btn-primary" asp-page="UserPersonalInformation"/>
 		</div>
 		<div class="form-group">
-			<input type="submit" value="Forgot Password" class="btn btn-primary" />
+			<input type="submit" value="Forgot Password" class="btn btn-primary" asp-page="ForgotPW" />
 		</div>
 	</form>
 </div>

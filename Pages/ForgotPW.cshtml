@@ -1,0 +1,59 @@
+﻿@page
+@model AppDomainProject.Pages.Shared.IndexModel
+@{
+    ViewData["Title"] = "Forgot Password";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Forgot Password Request</h1>
+    <form method="post">
+        <b>
+            Please enter your user ID and email to begin the new password process.
+
+        </b>
+        <div class="form-group">
+            <label asp-for="Id" class="control-label"></label>
+            <input asp-for="Id" class="control-label" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="email" class="control-label"></label>
+            <input asp-for="email" class="control-label" />
+        </div>
+
+        <div class="form-group">
+            <input asp-for="next" value="Next" class="btn btn-primary" />
+        </div>
+    </form>
+    <form method="post">
+        <b>
+            Please enter your security question answers to continue.
+            
+        </b>
+        <div class="form-group">
+            <label asp-for="SecQuestion1" class="control-label"></label>
+            <input asp-for="SecQuestion1" class="control-label" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SecQuestion2" class="control-label"></label>
+            <input asp-for="SecQuestion2" class="control-label" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SecQuestion3" class="control-label"></label>
+            <input asp-for="SecQuestion3" class="control-label" />
+        </div>
+
+        <div class="form-group">
+            <input asp-for="next" value="Next" class="btn btn-primary" />
+        </div>
+    </form>
+    <form method="post">
+        <div asp-for="ConfirmSent" style="color:green; font:bold 16px georgia; margin-bottom: 5px; text-align:center;">
+            <b>
+                Your new password has been create. Please return to Home to log-in.
+            </b>
+        </div>
+    </form>
+</div>
