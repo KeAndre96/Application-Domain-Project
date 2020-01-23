@@ -58,7 +58,18 @@ namespace AppDomainProject.Pages
             if (users.Count != 1)
                 return false;
             PasswordData user = users[0];
-            return user.Password.Equals(Pass);
+
+            if (!user.Password.Equals(Pass))
+                return false;
+
+
+            var query2 = from u in _context.UserInfoData select u;
+            query2 = query2.Where(m => m.ID.Equals(Id));
+            var info = await query2.FirstOrDefaultAsync();
+            if (info.Status != AccountStatus.Active)
+                return false;
+
+            return true;
         }
 
         private IActionResult GetDashboard()

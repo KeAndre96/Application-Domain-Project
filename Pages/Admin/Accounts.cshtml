@@ -1,0 +1,45 @@
+﻿@page
+@model AppDomainProject.Pages.Admin.AccountsModel
+@using AppDomainProject.Models;
+@{
+	ViewData["Title"] = "Account Management";
+}
+
+<h1>User Accounts</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Users.FirstOrDefault().ID)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Users.FirstOrDefault().Email)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Users.FirstOrDefault().Class)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Users.FirstOrDefault().Status)
+			</th>
+		</tr>
+	</thead>
+	@foreach (UserInfoData u in Model.Users)
+	{
+<tr>
+	<td>
+		@Html.DisplayFor(modelItem => u.ID)
+	</td>
+	<td>
+		@Html.DisplayFor(modelItem => u.Email)
+	</td>
+	<td>
+		@Html.DisplayFor(modelItem => u.Class)
+	</td>
+	<td>
+		@Html.DisplayFor(modelItem => u.Status)
+	</td>
+</tr>
+	}
+
+</table>
