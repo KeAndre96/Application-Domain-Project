@@ -1,0 +1,33 @@
+﻿@page
+@model AppDomainProject.UserPersonalInformationModel
+@{
+    ViewData["Title"] = "UserPersonalInformation";
+}
+
+<h1>User Personal Information</h1>
+
+<div class="text-center">
+    <h1 class="display-4">Input Personal Information</h1>
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" class="control-label" />
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="control-label" />
+        </div>
+        <div class="form-group">
+            <label asp-for="DOB" class="control-label"></label>
+            <input asp-for="DOB" class="control-label" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="control-label"></label>
+            <input asp-for="Address" class="control-label" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+

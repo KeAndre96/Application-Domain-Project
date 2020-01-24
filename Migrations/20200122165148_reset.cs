@@ -46,7 +46,7 @@ namespace AppDomainProject.Migrations
                     Status = table.Column<int>(nullable: false),
                     Class = table.Column<int>(nullable: false),
                     PasswordSetDate = table.Column<DateTime>(nullable: false),
-                    PasswordExpirationDate = table.Column<int>(nullable: false)
+                    PasswordExpirationDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

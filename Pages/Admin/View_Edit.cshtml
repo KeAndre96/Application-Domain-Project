@@ -1,0 +1,49 @@
+﻿@page
+@model AppDomainProject.Pages.Admin.View_EditModel
+@{
+    ViewData["Title"] = "View/Edit User Info";
+}
+
+
+
+<h1>User: @Model.Info.ID</h1>
+
+<form method="post">
+	<input type="hidden" asp-for="Info.ID" />
+
+	<div class="form-group">
+		<label asp-for="Info.FirtsName"></label>
+		<input asp-for="Info.FirtsName" disabled=@(!Model.EditMode) />
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Info.LastName"></label>
+		<input asp-for="Info.LastName" disabled=@(!Model.EditMode) />
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Info.Address"></label>
+		<input asp-for="Info.Address" disabled=@(!Model.EditMode) />
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Info.DOB"></label>
+		<input asp-for="Info.DOB" disabled=@(!Model.EditMode) />
+	</div>
+
+	@if (Model.EditMode)
+	{
+		<div class="form-group">
+			<input type="submit" value="Save" asp-page-handler="Save" />
+			<input type="submit" value="Cancel" asp-page-handler="Cancel" />
+		</div>
+	}
+	else
+	{
+		<div class="form-group">
+			<input type="submit" value="Edit" asp-page-handler="Edit" />
+		</div>
+	}
+</form>
+
+<a asp-page="./Accounts">Back</a>

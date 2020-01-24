@@ -21,7 +21,7 @@ namespace AppDomainProject.Models
         public DateTime PasswordSetDate { get; set; }
 
         [DataType(DataType.Date)]
-        public DataType PasswordExpirationDate { get; set; }
+        public DateTime PasswordExpirationDate { get; set; }
 
     }
 

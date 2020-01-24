@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+
 namespace AppDomainProject
 {
     public class Program
@@ -22,5 +23,9 @@ namespace AppDomainProject
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+       
     }
+
+
 }
