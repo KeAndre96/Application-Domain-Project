@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Net.Mail;
 
 namespace AppDomainProject
 {
@@ -29,6 +30,41 @@ namespace AppDomainProject
         [BindProperty]
         public string Address { get; set; }
 
+        public string Email { get; set; }
+
+
+        public async Task<IActionResult> OnPostSendAsync()
+        {
+            
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.Credentials = new System.Net.NetworkCredential("appdomtest@gmail.com", "nmaykkgwhhssohju");
+            smtp.EnableSsl = true;
+
+            MailMessage msg = new MailMessage();
+            msg.Subject = "New Password";
+            msg.Body = "Dumb Slut";
+            //string ToAddress = Email;
+            string ToAddress = "Admin <appdomtest@gmail.com>";
+            msg.To.Add(ToAddress);
+            string FromAddress = " Admin <appdomtest@gmail.com>";
+            msg.From = new MailAddress(FromAddress);
+
+            try
+            {
+                smtp.Send(msg);
+            }
+            catch
+            {
+                throw;
+            }
+
+
+
+            return RedirectToPage();
+
+        }
         public void OnGet()
         {
             
