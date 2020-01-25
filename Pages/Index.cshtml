@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div class="text-center" style="position:center; text-align:left">
     <h1 class="display-4">Welcome</h1>
 	<form method="post">
 		<div class="form-group">
@@ -15,10 +15,8 @@
 			<label asp-for="Pass" class="control-label"></label>
 			<input asp-for="Pass" class="control-label" />
 		</div>
-		<div class="form-group">
+		<div class="d-inline-flex" style="margin:5px;">
 			<input type="submit" value="Log In" class="btn btn-primary" />
-		</div>
-		<div class="form-group">
 			<input type="submit" value="Create New User" class="btn btn-primary" asp-page="UserPersonalInformation"/>
 		</div>
 		<div class="form-group">
