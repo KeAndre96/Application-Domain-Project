@@ -35,7 +35,7 @@ namespace AppDomainProject.Pages.Manager
             if (info == null)
                 return NotFound();
 
-            Name = $"{info.FirtsName} {info.LastName}";
+            Name = $"{info.FirstName} {info.LastName}";
             Username = info.ID;
 
             var query2 = from u in _context.UserInfoData select u;
