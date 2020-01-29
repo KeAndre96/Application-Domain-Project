@@ -29,7 +29,8 @@ namespace AppDomainProject.Models
     {
         Active,
         Inactive,
-        Suspended
+        Suspended,
+        Pending
     }
 
     public enum AccountType

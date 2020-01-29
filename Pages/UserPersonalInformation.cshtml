@@ -4,11 +4,15 @@
     ViewData["Title"] = "UserPersonalInformation";
 }
 
-<h1>User Personal Information</h1>
+@*<h1>User Personal Information</h1>*@
 
 <div class="text-center">
     <h1 class="display-4">Input Personal Information</h1>
     <form method="post">
+        <div class="form-group">
+            <label asp-for="Id" class="control-label"></label>
+            <input asp-for="Id" class="control-label" />
+        </div>
         <div class="form-group">
             <label asp-for="FirstName" class="control-label"></label>
             <input asp-for="FirstName" class="control-label" />
@@ -26,7 +30,11 @@
             <input asp-for="Address" class="control-label" />
         </div>
         <div class="form-group">
-            <button asp-page-handler="Send" class="btn btn-default">Send</button> />
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="control-label" />
+        </div>
+        <div class="form-group">
+            <button asp-page-handler="Send" class="btn btn-primary">Send</button> />
         </div>
     </form>
 </div>
