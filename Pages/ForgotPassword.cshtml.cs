@@ -49,7 +49,7 @@ namespace AppDomainProject.Pages
 
             MailMessage msg = new MailMessage();
             msg.Subject = "New Password";
-            msg.Body = "Dumb Slut";
+            msg.Body = "new password";
             string ToAddress = Email;
             msg.To.Add(ToAddress);
             string FromAddress = " Admin <appdomtest@gmail.com>";

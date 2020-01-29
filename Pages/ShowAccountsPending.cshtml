@@ -1,0 +1,54 @@
+﻿@page
+@model AppDomainProject.Pages.Data.UserInfo.IndexModel
+@using AppDomainProject.Models
+@{
+	ViewData["Title"] = "Users Accounts";
+}
+<div class="text-center">
+	<h1 class="display-4">Lists of Accounts Status</h1>
+	<form method="post">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+						@Html.DisplayNameFor(model => model.UserInfoData[0].ID)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.UserInfoData[0].Email)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.UserInfoData[0].Status)
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.UserInfoData)
+				{
+					if (item.Status.Equals(AccountStatus.Pending))
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.ID)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Email)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Status)
+							</td>
+							<td>
+								<form method="post">
+									<input type="submit" value="Activate" asp-route-Id=@item.ID asp-page-handler="Activate" />
+								</form>
+							</td>
+						</tr>
+					}
+
+				}
+			</tbody>
+		</table>
+		<div class="form-group">
+			<button asp-page-handler="Submit" class="btn btn-default">Send</button> />
+		</div>
+	</form>
+	</div>

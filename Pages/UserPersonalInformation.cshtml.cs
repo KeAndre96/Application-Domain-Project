@@ -8,11 +8,29 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Net.Mail;
+using AppDomainProject.Models;
 
 namespace AppDomainProject
 {
     public class UserPersonalInformationModel : PageModel
     {
+
+        private readonly AppDomainProject.Models.AppDomainProjectContext _context;
+
+        public UserPersonalInformationModel(AppDomainProject.Models.AppDomainProjectContext context)
+        {
+            _context = context;
+        }
+
+        public IActionResult OnGet()
+        {
+            return Page();
+        }
+
+        [Display(Name = "ID")]
+        [BindProperty]
+        public string Id { get; set; }
+
 
         [Display(Name = "First Name")]
         [BindProperty]
@@ -22,7 +40,7 @@ namespace AppDomainProject
         [BindProperty]
         public string LastName { get; set; }
 
-        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
         [BindProperty]
         public string DOB { get; set; }
 
@@ -30,8 +48,12 @@ namespace AppDomainProject
         [BindProperty]
         public string Address { get; set; }
 
+        [Display(Name = "Email")]
+        [BindProperty]
         public string Email { get; set; }
 
+        [BindProperty]
+        public PersonalInfoData PersonalInfoData { get; set; }
 
         public async Task<IActionResult> OnPostSendAsync()
         {
@@ -43,8 +65,8 @@ namespace AppDomainProject
             smtp.EnableSsl = true;
 
             MailMessage msg = new MailMessage();
-            msg.Subject = "New Password";
-            msg.Body = "Dumb Slut";
+            msg.Subject = "New User Registration";
+            msg.Body = "https://localhost:44378/ShowAccountsPending";
             //string ToAddress = Email;
             string ToAddress = "Admin <appdomtest@gmail.com>";
             msg.To.Add(ToAddress);
@@ -60,14 +82,15 @@ namespace AppDomainProject
                 throw;
             }
 
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-
+            _context.PersonalInfoData.Add(PersonalInfoData);
+            await _context.SaveChangesAsync();
             return RedirectToPage();
 
-        }
-        public void OnGet()
-        {
-            
         }
     }
 }

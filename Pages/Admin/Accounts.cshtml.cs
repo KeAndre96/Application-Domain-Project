@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Threading.Tasks;
 using AppDomainProject.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -58,5 +61,59 @@ namespace AppDomainProject.Pages.Admin
         {
             return u.Status == AccountStatus.Active ? "Deactivate" : "Activate";
         }
+
+
+        //Email items
+        [Display(Name = "Email:")]
+        [BindProperty]
+
+        public string Email { get; set; }
+
+        [Display(Name = "Subject:")]
+        [BindProperty]
+
+        public string Subject { get; set; }
+
+        [Display(Name = "Body:")]
+        [BindProperty]
+
+        public string Body { get; set; }
+
+        public async Task<IActionResult> OnPostSendAsync()
+        {
+            Send_Message(Body, Subject, Email);
+
+
+            return RedirectToPage();
+        }
+
+            public void Send_Message(string message, string subject, string to)
+        {
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.Credentials = new System.Net.NetworkCredential("appdomtest@gmail.com", "nmaykkgwhhssohju");
+            smtp.EnableSsl = true;
+
+            MailMessage msg = new MailMessage();
+            msg.Subject = message;
+            msg.Body = subject;
+            string ToAddress = to;
+            msg.To.Add(ToAddress);
+            string FromAddress = " Admin <appdomtest@gmail.com>";
+            msg.From = new MailAddress(FromAddress);
+
+            try
+            {
+                smtp.Send(msg);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+
     }
 }
