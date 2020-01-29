@@ -14,6 +14,9 @@ namespace AppDomainProject.Pages
     {
         private readonly ILogger<ForgotPasswordModel> _logger;
         private readonly AppDomainProjectContext _context;
+        [BindProperty]
+        public int PageState { get; set; } = 0;
+        
 
         // Set all the input fields to display the listed text and set types if required
         [Display(Name = "User ID:")]
@@ -24,8 +27,6 @@ namespace AppDomainProject.Pages
         [BindProperty]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-
-        
 
         [Display(Name = "New Password:")]
         [BindProperty]
@@ -56,7 +57,7 @@ namespace AppDomainProject.Pages
         }
 
         
-        public void OnGet()
+        public void OnGet(int? pageState)
         {
             Id = "";
             Email = "";
@@ -64,17 +65,27 @@ namespace AppDomainProject.Pages
             SecQuestion2 = "";
             SecQuestion3 = "";
             ModelState.Clear();
+            if(pageState != null)
+            {
+                PageState = pageState.Value;
+            }
         }
 
-        public ActionResult OnPostIdEmailNext(string data)
-        { 
-            return data ;
-        }
 
-        public ActionResult OnPostSecQuestionsNext(string data)
+
+        public ActionResult OnPostIdEmailNext()
         {
-            return data;
+            PageState++;
+            return Redirect("./ForgotPW?pageState="+PageState);
         }
+
+        public ActionResult OnPostSecQuestionsNext()
+        {
+            PageState++;
+            return Redirect("./ForgotPW?pageState=" + PageState);
+        }
+
+
         /*
           public async Task<IActionResult> OnPost()
          {
