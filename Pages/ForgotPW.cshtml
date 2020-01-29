@@ -4,82 +4,82 @@
     ViewData["Title"] = "ForgotPassword";
 }
 
-    <asp:panel style="position:relative; text-align:left">
-        <h1 class="display-4">Forgot Password</h1>
-        <form method="post">
-            <div runat="ForgotPasswordModel" class="form-group">
-                <b>
-                    Please enter your user ID and email to begin the new password process.
+@if (Model.PageState == 0)
+{
+    <h1 class="display-4">Forgot Password</h1>
+    <form method="post">
+        <div runat="server" class="form-group">
+            <b>
+                Please enter your user ID and email to begin the new password process.
 
-                </b>
-                <div class="form-group">
-                    <label asp-for="Id" class="control-label"></label>
-                    <input asp-for="Id" class="control-label" />
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="control-label" />
-                </div>
-
-                <div class="form-group">
-                    <input id="IdEmailNext" type="submit" value="Next" class="btn btn-primary" />
-                </div>
-            </div>
-        </form>
-    </asp:panel>
-
-    <asp:panel itemid="Questions" runat="ForgotPasswordModel" visible="false">
-        <form method="post">
+            </b>
             <div class="form-group">
-                <b>
-                    Please enter your security question answers to continue.
-
-                </b>
-                <div class="form-group">
-                    <label asp-for="SecQuestion1" class="control-label"></label>
-                    <input asp-for="SecQuestion1" type="text" class="control-label" />
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="SecQuestion2" class="control-label"></label>
-                    <input asp-for="SecQuestion2" type="text" class="control-label" />
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="SecQuestion3" class="control-label"></label>
-                    <input asp-for="SecQuestion3" type="text" class="control-label" />
-                </div>
-
-                <div class="form-group">
-                    <button id="SecQuestionNext" type="submit" value="Next" class="btn btn-primary" />
-                </div>
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="control-label" />
             </div>
-        </form>
-    </asp:panel>
 
-    <asp:panel itemid="NewPassword" runat="ForgotPasswordModel" visible="false">
-        <form method="post">
             <div class="form-group">
-                <b>
-                    Please enter your new password and password confirmation.
-
-                </b>
-                <div class="form-group">
-                    <label asp-for="NewPass" class="control-label"></label>
-                    <input asp-for="NewPass" class="control-label" />
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="NewPassConfirm" class="control-label"></label>
-                    <input asp-for="NewPassConfirm" class="control-label" />
-                </div>
-
-                <div id="FinishNewPass" class="form-group">
-                    <button type="submit" value="Send" class="btn btn-primary" />
-                </div>
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="control-label" />
             </div>
-        </form>
-    </asp:panel>
 
+            <div class="form-group">
+                <input asp-page-handler="IdEmailNext" type="submit" value="Next" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+}
+@if (Model.PageState == 1)
+{
+    <form method="post">
+        <div class="form-group">
+            <b>
+                Please enter your security question answers to continue.
 
+            </b>
+            <div class="form-group">
+                <label asp-for="SecQuestion1" class="control-label"></label>
+                <input asp-for="SecQuestion1" type="text" class="control-label" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SecQuestion2" class="control-label"></label>
+                <input asp-for="SecQuestion2" type="text" class="control-label" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SecQuestion3" class="control-label"></label>
+                <input asp-for="SecQuestion3" type="text" class="control-label" />
+            </div>
+
+            <div class="form-group">
+                <input asp-page-handler="SecQuestionNext" type="submit" value="Next" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+}
+
+@if (Model.PageState == 2)
+{
+    <form method="post">
+        <div class="form-group">
+            <b>
+                Please enter your new password and password confirmation.
+
+            </b>
+            <div class="form-group">
+                <label asp-for="NewPass" class="control-label"></label>
+                <input asp-for="NewPass" class="control-label" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NewPassConfirm" class="control-label"></label>
+                <input asp-for="NewPassConfirm" class="control-label" />
+            </div>
+
+            <div id="FinishNewPass" class="form-group">
+                <input type="submit" value="Send" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+}
