@@ -11,20 +11,21 @@ namespace AppDomainProject.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        //private readonly ILogger<IndexModel> _logger;
         private readonly AppDomainProjectContext _context;
 
-        [Display(Name = "Username")]
+        [Display(Name = "Username:")]
         [BindProperty]
         public string Id { get; set; }
 
-        [Display(Name = "Password")]
+        [Display(Name = "Password:")]
         [BindProperty]
+        [DataType(DataType.Password)]
         public string Pass { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, AppDomainProjectContext context)
         {
-            _logger = logger;
+            //_logger = logger;
             _context = context;
         }
 
@@ -47,7 +48,7 @@ namespace AppDomainProject.Pages
             }
         }
 
-        private async Task<bool> ValidateAsync()
+            private async Task<bool> ValidateAsync()
         {
             var query = from u in _context.LoginData select u;
             if (!string.IsNullOrEmpty(Id) && !string.IsNullOrEmpty(Pass))
