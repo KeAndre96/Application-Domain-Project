@@ -14,9 +14,6 @@
 						@Html.DisplayNameFor(model => model.UserInfoData[0].ID)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.UserInfoData[0].Email)
-					</th>
-					<th>
 						@Html.DisplayNameFor(model => model.UserInfoData[0].Status)
 					</th>
 				</tr>
@@ -31,14 +28,16 @@
 								@Html.DisplayFor(modelItem => item.ID)
 							</td>
 							<td>
-								@Html.DisplayFor(modelItem => item.Email)
-							</td>
-							<td>
 								@Html.DisplayFor(modelItem => item.Status)
 							</td>
 							<td>
 								<form method="post">
 									<input type="submit" value="Activate" asp-route-Id=@item.ID asp-page-handler="Activate" />
+								</form>
+							</td>
+							<td>
+								<form method="post">
+									<input type="submit" value="Delete" asp-route-Id=@item.ID  asp-page-handler="Delete" />
 								</form>
 							</td>
 						</tr>
@@ -47,8 +46,5 @@
 				}
 			</tbody>
 		</table>
-		<div class="form-group">
-			<button asp-page-handler="Submit" class="btn btn-default">Send</button> />
-		</div>
 	</form>
 	</div>
