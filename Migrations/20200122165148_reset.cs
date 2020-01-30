@@ -27,7 +27,7 @@ namespace AppDomainProject.Migrations
                 columns: table => new
                 {
                     ID = table.Column<string>(nullable: false),
-                    FirtsName = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     DOB = table.Column<DateTime>(nullable: false),
                     Address = table.Column<string>(nullable: true)

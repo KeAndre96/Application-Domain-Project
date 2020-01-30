@@ -1,7 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AppDomainProject.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +45,19 @@ namespace AppDomainProject.Pages
         {
             if (await ValidateAsync())
             {
+                ClaimsIdentity claims = new ClaimsIdentity(new List<Claim>
+                {
+                   new Claim("ID", Id)
+                }, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                AuthenticationProperties properties = new AuthenticationProperties
+                {
+                    AllowRefresh = true,
+                    IssuedUtc = DateTime.UtcNow,
+                    ExpiresUtc = DateTime.UtcNow.AddMinutes(60)
+                };
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claims), properties);
                 return GetDashboard();
             }
             else
@@ -80,9 +98,9 @@ namespace AppDomainProject.Pages
             UserInfoData info = query.FirstOrDefault();
             switch (info.Class)
             {
-                case AccountType.Admin:  return Redirect("Admin/" + Id); 
-                case AccountType.Manager: return Redirect("Manager/" + Id); 
-                case AccountType.User: return Redirect("User/" + Id); 
+                case AccountType.Admin:  return Redirect("Admin"); 
+                case AccountType.Manager: return Redirect("Manager"); 
+                case AccountType.User: return Redirect("User"); 
                 default: return NotFound();
             }
             

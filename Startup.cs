@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using AppDomainProject.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using AppDomainProject.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AppDomainProject
 {
@@ -29,6 +32,16 @@ namespace AppDomainProject
 
             services.AddDbContext<AppDomainProjectContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("AppDomainProjectContext")));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => {
+                options.LoginPath = "/Index";
+            });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("user", policy => policy.Requirements.Add(new UserAuthorizationRequirement()));
+            });
+
+            services.AddSingleton<IAuthorizationHandler, UserAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +64,9 @@ namespace AppDomainProject
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
+
+            app.UseCookiePolicy(new CookiePolicyOptions { MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Lax });
 
             app.UseEndpoints(endpoints =>
             {

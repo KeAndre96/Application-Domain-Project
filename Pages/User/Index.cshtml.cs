@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AppDomainProject.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AppDomainProject.Pages.User
 {
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Policy = "user")]
     public class IndexModel : PageModel
     {
 
@@ -25,8 +28,10 @@ namespace AppDomainProject.Pages.User
             _context = context;
         }
 
-        public IActionResult OnGet(string id)
+        public IActionResult OnGet()
         {
+            string id = HttpContext.User.FindFirst("ID").Value;
+
             var query = from u in _context.PersonalInfoData select u;
             if (!string.IsNullOrEmpty(id))
             {
