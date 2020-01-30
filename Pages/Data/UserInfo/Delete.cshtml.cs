@@ -20,7 +20,7 @@ namespace AppDomainProject.Pages.Data.UserInfo
 
         [BindProperty]
         public UserInfoData UserInfoData { get; set; }
-
+        
         public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
