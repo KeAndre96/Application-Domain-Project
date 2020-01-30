@@ -73,10 +73,9 @@ namespace AppDomainProject.Pages
 
         public ActionResult OnPostSecQuestionsNext()
         {
-            PageState++;
-            return Redirect("./ForgotPW?pageState=" + PageState);
+            //PageState++;
+            return Redirect("./ForgotPW?pageState=" + 2);
         }
-
 
         /*
           public async Task<IActionResult> OnPost()
