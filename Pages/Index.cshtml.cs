@@ -16,7 +16,6 @@ namespace AppDomainProject.Pages
 {
     public class IndexModel : PageModel
     {
-        //private readonly ILogger<IndexModel> _logger;
         private readonly AppDomainProjectContext _context;
 
         [Display(Name = "Username:")]
@@ -28,9 +27,8 @@ namespace AppDomainProject.Pages
         [DataType(DataType.Password)]
         public string Pass { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, AppDomainProjectContext context)
+        public IndexModel(AppDomainProjectContext context)
         {
-            //_logger = logger;
             _context = context;
         }
 
@@ -43,11 +41,13 @@ namespace AppDomainProject.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (await ValidateAsync())
+            
+            if (Validate(out UserInfoData info))
             {
                 ClaimsIdentity claims = new ClaimsIdentity(new List<Claim>
                 {
-                   new Claim("ID", Id)
+                   new Claim("ID", Id),
+                   new Claim("Class", info.Class.ToString())
                 }, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 AuthenticationProperties properties = new AuthenticationProperties
@@ -66,26 +66,25 @@ namespace AppDomainProject.Pages
             }
         }
 
-            private async Task<bool> ValidateAsync()
+        private bool Validate(out UserInfoData info)
         {
+            var query2 = from u in _context.UserInfoData select u;
+            query2 = query2.Where(m => m.ID.Equals(Id));
+            info = query2.FirstOrDefault();
+            if (info.Status != AccountStatus.Active)
+                return false;
+
             var query = from u in _context.LoginData select u;
             if (!string.IsNullOrEmpty(Id) && !string.IsNullOrEmpty(Pass))
             {
                 query = query.Where(m => m.ID.Equals(Id));
             }
-            var users = await query.ToListAsync();
+            var users = query.ToList();
             if (users.Count != 1)
                 return false;
             PasswordData user = users[0];
 
             if (!user.Password.Equals(Pass))
-                return false;
-
-
-            var query2 = from u in _context.UserInfoData select u;
-            query2 = query2.Where(m => m.ID.Equals(Id));
-            var info = await query2.FirstOrDefaultAsync();
-            if (info.Status != AccountStatus.Active)
                 return false;
 
             return true;

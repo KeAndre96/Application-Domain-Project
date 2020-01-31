@@ -8,14 +8,11 @@ using AppDomainProject.Models;
 
 namespace AppDomainProject.Pages.Admin
 {
-    public class View_EditModel : PageModel
+    public class View_EditModel : AdminPageModel
     {
 
-        private AppDomainProjectContext _context;
-
-        public View_EditModel(AppDomainProjectContext context)
+        public View_EditModel(AppDomainProjectContext context) : base(context)
         {
-            _context = context;
         }
 
         [BindProperty]

@@ -34,11 +34,14 @@ namespace AppDomainProject
                     options.UseSqlServer(Configuration.GetConnectionString("AppDomainProjectContext")));
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => {
-                options.LoginPath = "/Index";
+                
             });
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("user", policy => policy.Requirements.Add(new UserAuthorizationRequirement()));
+                options.AddPolicy("registered", policy => policy.Requirements.Add(new UserAuthorizationRequirement()));
+                options.AddPolicy("user", policy => policy.Requirements.Add(new UserAuthorizationRequirement(AccountType.User)));
+                options.AddPolicy("manager", policy => policy.Requirements.Add(new UserAuthorizationRequirement(AccountType.Manager)));
+                options.AddPolicy("admin", policy => policy.Requirements.Add(new UserAuthorizationRequirement(AccountType.Admin)));
             });
 
             services.AddSingleton<IAuthorizationHandler, UserAuthorizationHandler>();

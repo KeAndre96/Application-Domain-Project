@@ -11,13 +11,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AppDomainProject.Pages.Admin
 {
-    public class AccountsModel : PageModel
+    public class AccountsModel : AdminPageModel
     {
-        private AppDomainProjectContext _context;
+        
 
-        public AccountsModel(AppDomainProjectContext context)
+        public AccountsModel(AppDomainProjectContext context) : base (context)
         {
-            _context = context;
+
         }
 
         [BindProperty]
@@ -79,7 +79,7 @@ namespace AppDomainProject.Pages.Admin
 
         public string Body { get; set; }
 
-        public async Task<IActionResult> OnPostSendAsync()
+        public IActionResult OnPostSend()
         {
             Send_Message(Body, Subject, Email);
 

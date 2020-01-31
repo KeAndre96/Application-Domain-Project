@@ -13,8 +13,8 @@ namespace AppDomainProject.Authorization
 
             if (context.User.FindFirst("ID") != null)
             {
-                context.Succeed(requirement);
-
+                if(requirement.AccountType == null || requirement.AccountType.Value.ToString().Equals(context.User.FindFirst("Class")?.Value))
+                    context.Succeed(requirement);
             }
             else
             {
