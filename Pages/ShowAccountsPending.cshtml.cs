@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AppDomainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppDomainProject
 {
@@ -17,31 +18,64 @@ namespace AppDomainProject
             _context = context;
         }
         [BindProperty]
-        public UserInfoData UserInfoData { get; set; }
-
-        public void OnGet()
+        public List<UserInfoData> UserInfoData { get; set; }
+        
+        public async Task OnGet()
         {
+            UserInfoData = await _context.UserInfoData.ToListAsync();
+
         }
-        /*
-        public async Task<IActionResult> OnPostActivate(string id)
+        
+        public async void OnPostActivate(string id)
         {
             if(id == null)
             {
+                NotFound();
+            }
+            var UserInfoData = await _context.UserInfoData.ToListAsync();
+            var tempUser = UserInfoData.Find(m => m.ID.Equals(id));
+            tempUser.Status = AccountStatus.Active;
+            _context.Attach(tempUser).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserInfoDataExists(tempUser.ID))
+                {
+                    NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            RedirectToPage("./");
+        }
+        
+        public async Task<IActionResult> OnPostDelete(string id)
+        {
+            if (id == null)
+            {
                 return NotFound();
             }
-            UserInfoData = await _context.UserInfoData.FindAsync(id);
-            _context.UserInfoData.Update();
-        }
-        */
-        /*
-        public void OnPostActivate(string Id)
-        {
-            UserInfoData = await _context.UserInfoData.FindAsync(id);
-        }
-        */
-        public void OnPostDelete()
-        {
+            var UserInfoData = await _context.UserInfoData.ToListAsync();
+            var tempUser = UserInfoData.Find(m => m.ID.Equals(id));
+            
 
+            if (tempUser != null)
+            {
+                _context.UserInfoData.Remove(tempUser);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToPage("./");
+        }
+        
+        private bool UserInfoDataExists(string id)
+        {
+            return _context.UserInfoData.Any(e => e.ID == id);
         }
     }
 }

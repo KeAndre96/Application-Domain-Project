@@ -55,8 +55,8 @@ namespace AppDomainProject
         [BindProperty]
         public PersonalInfoData PersonalInfoData { get; set; }
 
-        [BindProperty]
-        public UserInfoData UserInfoData { get; set; }
+        public UserInfoData UserInfoData {get; set;}
+
         public async Task<IActionResult> OnPostSendAsync()
         {
             
@@ -90,7 +90,7 @@ namespace AppDomainProject
             }
 
             _context.PersonalInfoData.Add(PersonalInfoData);
-            UserInfoData temp = new UserInfoData { ID=PersonalInfoData.ID, Status = AccountStatus.Pending};
+            UserInfoData temp = new UserInfoData { ID=PersonalInfoData.ID, Status = AccountStatus.Pending, Email=Email};
             _context.UserInfoData.Add(temp);
             await _context.SaveChangesAsync();
             return RedirectToPage();

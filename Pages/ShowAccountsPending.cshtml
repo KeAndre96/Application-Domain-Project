@@ -1,5 +1,5 @@
 ﻿@page
-@model AppDomainProject.Pages.Data.UserInfo.IndexModel
+@model AppDomainProject.ShowAccountsPendingModel
 @using AppDomainProject.Models
 @{
 	ViewData["Title"] = "Users Accounts";
@@ -32,12 +32,12 @@
 							</td>
 							<td>
 								<form method="post">
-									<input type="submit" value="Activate" asp-route-Id=@item.ID asp-page-handler="Activate" />
+									<input type="submit" value="Activate" asp-route-id=@item.ID asp-page-handler="activate" />
 								</form>
 							</td>
 							<td>
 								<form method="post">
-									<input type="submit" value="Delete" asp-route-Id=@item.ID  asp-page-handler="Delete" />
+									<input type="submit" value="Delete" asp-route-id=@item.ID  asp-page-handler="delete" />
 								</form>
 							</td>
 						</tr>
