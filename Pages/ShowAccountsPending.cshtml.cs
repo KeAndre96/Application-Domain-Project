@@ -26,11 +26,11 @@ namespace AppDomainProject
 
         }
         
-        public async void OnPostActivate(string id)
+        public async Task<IActionResult> OnPostActivate(string id)
         {
             if(id == null)
             {
-                NotFound();
+                return NotFound();
             }
             var UserInfoData = await _context.UserInfoData.ToListAsync();
             var tempUser = UserInfoData.Find(m => m.ID.Equals(id));
@@ -45,14 +45,14 @@ namespace AppDomainProject
             {
                 if (!UserInfoDataExists(tempUser.ID))
                 {
-                    NotFound();
+                    return NotFound();
                 }
                 else
                 {
                     throw;
                 }
             }
-            RedirectToPage("./");
+           return  RedirectToPage("./");
         }
         
         public async Task<IActionResult> OnPostDelete(string id)
@@ -70,7 +70,7 @@ namespace AppDomainProject
                 _context.UserInfoData.Remove(tempUser);
                 await _context.SaveChangesAsync();
             }
-            return RedirectToPage("./");
+            return RedirectToPage("./ShowAccountsPending");
         }
         
         private bool UserInfoDataExists(string id)
