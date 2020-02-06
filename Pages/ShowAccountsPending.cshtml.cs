@@ -52,7 +52,7 @@ namespace AppDomainProject
                     throw;
                 }
             }
-           return  RedirectToPage("./");
+            return Redirect("./ShowAccountsPending");
         }
         
         public async Task<IActionResult> OnPostDelete(string id)
@@ -70,7 +70,17 @@ namespace AppDomainProject
                 _context.UserInfoData.Remove(tempUser);
                 await _context.SaveChangesAsync();
             }
-            return RedirectToPage("./ShowAccountsPending");
+
+            var query = (from m in _context.PersonalInfoData select m).Where(n => n.ID.Equals(id));
+            var personalinfo = (await query.ToListAsync()).FirstOrDefault();
+
+            if(personalinfo != null)
+            {
+                _context.PersonalInfoData.Remove(personalinfo);
+                await _context.SaveChangesAsync();
+            }
+
+            return Redirect("./ShowAccountsPending");
         }
         
         private bool UserInfoDataExists(string id)
