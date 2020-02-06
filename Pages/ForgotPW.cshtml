@@ -1,5 +1,5 @@
 ﻿@page
-@model AppDomainProject.Pages.ForgotPasswordModel
+@model AppDomainProject.Pages.ForgotPWModel
 @{
     ViewData["Title"] = "ForgotPassword";
 }
@@ -23,7 +23,8 @@
                 <input asp-for="Email" class="control-label" />
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="padding: 0 5px 0 5px;">
+                <input asp-page-handler="IdEmailCancel" type="submit" value="Cancel" class="btn btn-primary" />
                 <input asp-page-handler="IdEmailNext" type="submit" value="Next" class="btn btn-primary" />
             </div>
         </div>
@@ -52,7 +53,9 @@
                 <input asp-for="SecQuestion3" type="text" class="control-label" />
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="padding: 0 5px 0 5px;">
+                <input asp-page-handler="SecQuestionsCancel" type="submit" value="Cancel" class="btn btn-primary" />
+                <input asp-page-handler="SecQuestionsBack" type="submit" value="Prev" class="btn btn-primary" />
                 <input asp-page-handler="SecQuestionsNext" type="submit" value="Next" class="btn btn-primary" />
             </div>
         </div>
@@ -77,11 +80,10 @@
                 <input asp-for="NewPassConfirm" class="control-label" />
             </div>
 
-            <div id="FinishNewPass" class="form-group">
-                <input type="submit" value="Send" class="btn btn-primary" />
+            <div id="FinishNewPass" class="form-group" style="padding: 0 5px 0 5px;">
+                <input asp-page-handler="FinishNewPWCancel" type="submit" value="Cancel" class="btn btn-primary" />
+                <input asp-page-handler="FinishNewPW" type="submit" value="Send" class="btn btn-primary" />
             </div>
         </div>
     </form>
 }
-
-

@@ -64,17 +64,37 @@ namespace AppDomainProject.Pages
         }
 
 
-
+        public ActionResult OnPostIdEmailCancel()
+        {
+            return Redirect("./Index");
+        }
         public ActionResult OnPostIdEmailNext()
         {
             PageState++;
             return Redirect("./ForgotPW?pageState=" + PageState);
         }
 
+        public ActionResult OnPostSecQuestionsCancel()
+        {
+            PageState = 0;
+            return Redirect("./Index");
+        }
+        public ActionResult OnPostSecQuestionsBack()
+        {
+            PageState = 0;
+            return Redirect("./ForgotPW?pageState=" + PageState);
+        }
+
         public ActionResult OnPostSecQuestionsNext()
         {
-            PageState++;
-            return Redirect("./ForgotPW?pageState=" + 2);
+            PageState = 2;
+            return Redirect("./ForgotPW?pageState=" + PageState);
+        }
+
+        public ActionResult OnPostFinishNewPWCancel()
+        {
+            PageState = 0;
+            return Redirect("./Index");
         }
 
         /*
