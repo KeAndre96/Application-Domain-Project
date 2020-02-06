@@ -10,13 +10,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AppDomainProject.Pages
 {
-    public class ForgotPasswordModel : PageModel
+    public class ForgotPWModel : PageModel
     {
-        private readonly ILogger<ForgotPasswordModel> _logger;
+        private readonly ILogger<ForgotPWModel> _logger;
         private readonly AppDomainProjectContext _context;
         [BindProperty]
         public int PageState { get; set; } = 0;
-        
 
         // Set all the input fields to display the listed text and set types if required
         [Display(Name = "User ID:")]
@@ -50,13 +49,6 @@ namespace AppDomainProject.Pages
         [BindProperty]
         public string SecQuestion3 { get; set; }
 
-        public ForgotPasswordModel(ILogger<ForgotPasswordModel> logger, AppDomainProjectContext context)
-        {
-            _logger = logger;
-            _context = context;
-        }
-
-        
         public void OnGet(int? pageState)
         {
             Id = "";
@@ -65,7 +57,7 @@ namespace AppDomainProject.Pages
             SecQuestion2 = "";
             SecQuestion3 = "";
             ModelState.Clear();
-            if(pageState != null)
+            if (pageState != null)
             {
                 PageState = pageState.Value;
             }
@@ -76,15 +68,14 @@ namespace AppDomainProject.Pages
         public ActionResult OnPostIdEmailNext()
         {
             PageState++;
-            return Redirect("./ForgotPW?pageState="+PageState);
+            return Redirect("./ForgotPW?pageState=" + PageState);
         }
 
         public ActionResult OnPostSecQuestionsNext()
         {
             PageState++;
-            return Redirect("./ForgotPW?pageState=" + PageState);
+            return Redirect("./ForgotPW?pageState=" + 2);
         }
-
 
         /*
           public async Task<IActionResult> OnPost()
