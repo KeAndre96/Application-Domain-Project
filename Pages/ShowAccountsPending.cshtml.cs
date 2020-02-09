@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using AppDomainProject.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -52,6 +53,31 @@ namespace AppDomainProject
                     throw;
                 }
             }
+
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.Credentials = new System.Net.NetworkCredential("appdomtest@gmail.com", "nmaykkgwhhssohju");
+            smtp.EnableSsl = true;
+
+            MailMessage msg = new MailMessage();
+            msg.Subject = "Create Password";
+            msg.Body = "https://localhost:44378/Data/Password/Create";
+            string ToAddress = tempUser.Email;
+            //string ToAddress = "Admin <appdomtest@gmail.com>";
+            msg.To.Add(ToAddress);
+            string FromAddress = " Admin <appdomtest@gmail.com>";
+            msg.From = new MailAddress(FromAddress);
+
+            try
+            {
+                smtp.Send(msg);
+            }
+            catch
+            {
+                throw;
+            }
+
             return Redirect("./ShowAccountsPending");
         }
         

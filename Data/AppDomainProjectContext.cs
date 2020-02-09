@@ -20,5 +20,7 @@ namespace AppDomainProject.Models
         public DbSet<UserInfoData> UserInfoData { get; set; }
 
         public DbSet<PersonalInfoData> PersonalInfoData { get; set; }
+
+        public DbSet<AppDomainProject.Models.AccountData> AccountData { get; set; }
     }
 }

@@ -1,0 +1,103 @@
+﻿@page
+@model AppDomainProject.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>AccountData</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.AccountName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.AccountName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.AccountDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.AccountDescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.NormalSide)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.NormalSide)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.AccountCategory)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.AccountCategory)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.AccountSubCategory)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.AccountSubCategory)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.InitialBalence)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.InitialBalence)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.Debit)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.Debit)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.Credit)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.Credit)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.Balence)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.Balence)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.TimeAccountAdded)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.TimeAccountAdded)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.UserId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.UserId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.Order)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.Order)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.Statement)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.Statement)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountData.Comment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountData.Comment)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.AccountData.AccountNumber">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

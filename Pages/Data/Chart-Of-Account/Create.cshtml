@@ -1,0 +1,104 @@
+﻿@page
+@model AppDomainProject.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>AccountData</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AccountData.AccountNumber" class="control-label"></label>
+                <input asp-for="AccountData.AccountNumber" class="form-control" />
+                <span asp-validation-for="AccountData.AccountNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.AccountName" class="control-label"></label>
+                <input asp-for="AccountData.AccountName" class="form-control" />
+                <span asp-validation-for="AccountData.AccountName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.AccountDescription" class="control-label"></label>
+                <input asp-for="AccountData.AccountDescription" class="form-control" />
+                <span asp-validation-for="AccountData.AccountDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.NormalSide" class="control-label"></label>
+                <input asp-for="AccountData.NormalSide" class="form-control" />
+                <span asp-validation-for="AccountData.NormalSide" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.AccountCategory" class="control-label"></label>
+                <input asp-for="AccountData.AccountCategory" class="form-control" />
+                <span asp-validation-for="AccountData.AccountCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.AccountSubCategory" class="control-label"></label>
+                <input asp-for="AccountData.AccountSubCategory" class="form-control" />
+                <span asp-validation-for="AccountData.AccountSubCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.InitialBalence" class="control-label"></label>
+                <input asp-for="AccountData.InitialBalence" class="form-control" />
+                <span asp-validation-for="AccountData.InitialBalence" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.Debit" class="control-label"></label>
+                <input asp-for="AccountData.Debit" class="form-control" />
+                <span asp-validation-for="AccountData.Debit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.Credit" class="control-label"></label>
+                <input asp-for="AccountData.Credit" class="form-control" />
+                <span asp-validation-for="AccountData.Credit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.Balence" class="control-label"></label>
+                <input asp-for="AccountData.Balence" class="form-control" />
+                <span asp-validation-for="AccountData.Balence" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.TimeAccountAdded" class="control-label"></label>
+                <input asp-for="AccountData.TimeAccountAdded" class="form-control" />
+                <span asp-validation-for="AccountData.TimeAccountAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.UserId" class="control-label"></label>
+                <input asp-for="AccountData.UserId" class="form-control" />
+                <span asp-validation-for="AccountData.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.Order" class="control-label"></label>
+                <input asp-for="AccountData.Order" class="form-control" />
+                <span asp-validation-for="AccountData.Order" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.Statement" class="control-label"></label>
+                <select asp-for="AccountData.Statement" class="form-control"></select>
+                <span asp-validation-for="AccountData.Statement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountData.Comment" class="control-label"></label>
+                <input asp-for="AccountData.Comment" class="form-control" />
+                <span asp-validation-for="AccountData.Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

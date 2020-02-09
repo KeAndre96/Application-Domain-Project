@@ -21,5 +21,31 @@ namespace AppDomainProject.Models
 
         public string AccountSubCategory { get; set; }
 
+        public double InitialBalence { get; set; }
+
+        public string Debit { get; set; }
+
+        public string Credit { get; set; }
+
+        public double Balence { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime TimeAccountAdded { get; set; }
+
+        public string UserId { get; set; }
+
+        public int Order { get; set; }
+
+        public AccountStatement Statement { get; set; }
+
+        public string Comment { get; set; }
+
+        public enum AccountStatement
+        {
+            IS,
+            BS,
+            RE
+        }
+
     }
 }

@@ -1,0 +1,114 @@
+﻿@page
+@model AppDomainProject.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].AccountName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].AccountDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].NormalSide)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].AccountCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].AccountSubCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].InitialBalence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].Debit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].Credit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].Balence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].TimeAccountAdded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].Order)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].Statement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountData[0].Comment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.AccountData) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NormalSide)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountSubCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InitialBalence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Debit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeAccountAdded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Statement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.AccountNumber">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.AccountNumber">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.AccountNumber">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
