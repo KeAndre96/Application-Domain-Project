@@ -52,14 +52,17 @@ namespace AppDomainProject
         [BindProperty]
         public string Email { get; set; }
 
+        [DataType(DataType.Password)]
         [BindProperty]
+        public string Password { get; set; }
+        
         public PersonalInfoData PersonalInfoData { get; set; }
 
         public UserInfoData UserInfoData {get; set;}
 
+        //public PasswordData PasswordData { get; set; }
         public async Task<IActionResult> OnPostSendAsync()
         {
-            
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
@@ -89,9 +92,16 @@ namespace AppDomainProject
                 return Page();
             }
 
-            _context.PersonalInfoData.Add(PersonalInfoData);
-            UserInfoData temp = new UserInfoData { ID=PersonalInfoData.ID, Status = AccountStatus.Pending, Email=Email};
+            PersonalInfoData pi = new PersonalInfoData { ID = Id, FirstName = FirstName, LastName = LastName, DOB = Convert.ToDateTime(DOB), Address = Address };
+            _context.PersonalInfoData.Add(pi);
+
+            UserInfoData temp = new UserInfoData { ID = pi.ID, Status = AccountStatus.Pending, Email = Email };
             _context.UserInfoData.Add(temp);
+
+            PasswordData pd = new PasswordData { ID = pi.ID, Password = Password };
+            _context.LoginData.Add(pd);
+            
+
             await _context.SaveChangesAsync();
             return RedirectToPage();
 

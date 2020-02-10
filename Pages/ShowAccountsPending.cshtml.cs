@@ -37,7 +37,8 @@ namespace AppDomainProject
             var tempUser = UserInfoData.Find(m => m.ID.Equals(id));
             tempUser.Status = AccountStatus.Active;
             _context.Attach(tempUser).State = EntityState.Modified;
-
+            //PasswordData pw = new PasswordData { ID = tempUser.ID };
+            
             try
             {
                 await _context.SaveChangesAsync();
@@ -103,6 +104,15 @@ namespace AppDomainProject
             if(personalinfo != null)
             {
                 _context.PersonalInfoData.Remove(personalinfo);
+                await _context.SaveChangesAsync();
+            }
+
+            var query2 = (from m in _context.LoginData select m).Where(n => n.ID.Equals(id));
+            var logininfo = (await query2.ToListAsync()).FirstOrDefault();
+
+            if(logininfo != null)
+            {
+                _context.LoginData.Remove(logininfo);
                 await _context.SaveChangesAsync();
             }
 
