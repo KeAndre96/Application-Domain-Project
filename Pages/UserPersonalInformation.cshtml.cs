@@ -95,7 +95,7 @@ namespace AppDomainProject
             PersonalInfoData pi = new PersonalInfoData { ID = Id, FirstName = FirstName, LastName = LastName, DOB = Convert.ToDateTime(DOB), Address = Address };
             _context.PersonalInfoData.Add(pi);
 
-            UserInfoData temp = new UserInfoData { ID = pi.ID, Status = AccountStatus.Pending, Email = Email };
+            UserInfoData temp = new UserInfoData { ID = pi.ID, Status = AccountStatus.Pending, Email = Email, Class = AccountType.User};
             _context.UserInfoData.Add(temp);
 
             PasswordData pd = new PasswordData { ID = pi.ID, Password = Password };

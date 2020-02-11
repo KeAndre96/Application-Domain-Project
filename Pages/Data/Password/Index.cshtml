@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.PasswordData[0].ID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PasswordData[0].Password)
             </th>
             <th>
@@ -31,6 +34,9 @@
     <tbody>
 @foreach (var item in Model.PasswordData) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
