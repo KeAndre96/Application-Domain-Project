@@ -21,18 +21,18 @@ namespace AppDomainProject.Models
 
         public string AccountSubCategory { get; set; }
 
-        public double InitialBalence { get; set; }
+        public double InitialBalance { get; set; }
 
         public string Debit { get; set; }
 
         public string Credit { get; set; }
 
-        public double Balence { get; set; }
+        public double Balance { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime TimeAccountAdded { get; set; }
 
-        public string UserId { get; set; }
+        public string ID { get; set; }
 
         public int Order { get; set; }
 
