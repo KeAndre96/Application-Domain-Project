@@ -29,15 +29,18 @@ namespace AppDomainProject
 
         [Display(Name = "ID")]
         [BindProperty]
+        [Required]
         public string Id { get; set; }
 
 
         [Display(Name = "First Name")]
         [BindProperty]
+        [Required]
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
         [BindProperty]
+        [Required]
         public string LastName { get; set; }
 
         [DataType(DataType.Date)]
@@ -46,14 +49,17 @@ namespace AppDomainProject
 
         [Display(Name = "Address")]
         [BindProperty]
+        [Required]
         public string Address { get; set; }
 
         [Display(Name = "Email")]
         [BindProperty]
+        [Required]
         public string Email { get; set; }
 
         [DataType(DataType.Password)]
         [BindProperty]
+        [Required]
         public string Password { get; set; }
         
         public PersonalInfoData PersonalInfoData { get; set; }
@@ -63,48 +69,53 @@ namespace AppDomainProject
         //public PasswordData PasswordData { get; set; }
         public async Task<IActionResult> OnPostSendAsync()
         {
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
-            smtp.Credentials = new System.Net.NetworkCredential("appdomtest@gmail.com", "nmaykkgwhhssohju");
-            smtp.EnableSsl = true;
-
-            MailMessage msg = new MailMessage();
-            msg.Subject = "New User Registration";
-            msg.Body = "https://localhost:44378/ShowAccountsPending";
-            //string ToAddress = Email;
-            string ToAddress = "Admin <appdomtest@gmail.com>";
-            msg.To.Add(ToAddress);
-            string FromAddress = " Admin <appdomtest@gmail.com>";
-            msg.From = new MailAddress(FromAddress);
-
-            try
+            if(ModelState.IsValid)
             {
-                smtp.Send(msg);
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.Credentials = new System.Net.NetworkCredential("appdomtest@gmail.com", "nmaykkgwhhssohju");
+                smtp.EnableSsl = true;
+
+                MailMessage msg = new MailMessage();
+                msg.Subject = "New User Registration";
+                msg.Body = "https://localhost:44378/ShowAccountsPending";
+                //string ToAddress = Email;
+                string ToAddress = "Admin <appdomtest@gmail.com>";
+                msg.To.Add(ToAddress);
+                string FromAddress = " Admin <appdomtest@gmail.com>";
+                msg.From = new MailAddress(FromAddress);
+
+                try
+                {
+                    smtp.Send(msg);
+                }
+                catch
+                {
+                    throw;
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return Page();
+                }
+
+                PersonalInfoData pi = new PersonalInfoData { ID = Id, FirstName = FirstName, LastName = LastName, DOB = Convert.ToDateTime(DOB), Address = Address };
+                _context.PersonalInfoData.Add(pi);
+
+                UserInfoData temp = new UserInfoData { ID = pi.ID, Status = AccountStatus.Pending, Email = Email, Class = AccountType.User };
+                _context.UserInfoData.Add(temp);
+
+                PasswordData pd = new PasswordData { ID = pi.ID, Password = Password };
+                _context.LoginData.Add(pd);
+
+
+                await _context.SaveChangesAsync();
+                return RedirectToPage();
+
             }
-            catch
-            {
-                throw;
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            PersonalInfoData pi = new PersonalInfoData { ID = Id, FirstName = FirstName, LastName = LastName, DOB = Convert.ToDateTime(DOB), Address = Address };
-            _context.PersonalInfoData.Add(pi);
-
-            UserInfoData temp = new UserInfoData { ID = pi.ID, Status = AccountStatus.Pending, Email = Email, Class = AccountType.User};
-            _context.UserInfoData.Add(temp);
-
-            PasswordData pd = new PasswordData { ID = pi.ID, Password = Password };
-            _context.LoginData.Add(pd);
-            
-
-            await _context.SaveChangesAsync();
-            return RedirectToPage();
-
+            return Page();
         }
+            
     }
 }
