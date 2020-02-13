@@ -11,11 +11,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AppDomainProject.Pages.Admin
 {
-    public class AccountsModel : AdminPageModel
+    public class UsersModel : AdminPageModel
     {
         
 
-        public AccountsModel(AppDomainProjectContext context) : base (context)
+        public UsersModel(AppDomainProjectContext context) : base (context)
         {
 
         }
