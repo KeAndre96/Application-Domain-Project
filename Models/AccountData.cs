@@ -15,7 +15,7 @@ namespace AppDomainProject.Models
 
         public string AccountDescription { get; set; }
 
-        public string NormalSide { get; set; }
+        public bool NormalSide { get; set; } //true = credit account
 
         public string AccountCategory { get; set; }
 
@@ -23,9 +23,9 @@ namespace AppDomainProject.Models
 
         public double InitialBalance { get; set; }
 
-        public string Debit { get; set; }
+        public double Debit { get; set; }
 
-        public string Credit { get; set; }
+        public double Credit { get; set; }
 
         public double Balance { get; set; }
 

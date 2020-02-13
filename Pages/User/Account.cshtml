@@ -1,0 +1,14 @@
+﻿@page "{acct}"
+@model AppDomainProject.AccountModel
+@{
+    ViewData["Title"] = "Account";
+}
+
+<h1>@Model.Account.AccountName</h1>
+<p>@Model.Account.AccountNumber - @Model.GetCategoryLabel()</p>
+
+<h3>Balance</h3>
+<p>@Model.Account.Balance</p>
+<h3>Side</h3>
+<p>@Model.GetSideLabel()</p>
+

@@ -1,0 +1,32 @@
+﻿@page
+@model AppDomainProject.AccountsModel
+@using AppDomainProject.Models
+@{
+    ViewData["Title"] = "Accounts";
+}
+
+<h1>Accounts</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Account Number</th>
+            <th>Account Name</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach(AccountData a in Model.Accounts)
+	{
+        <tr>
+            <td>@Html.DisplayFor(modelItem => a.AccountNumber)</td>
+            <td>@Html.DisplayFor(modelItem => a.AccountName)</td>
+            <td>@Html.DisplayFor(modelItem => a.AccountDescription)</td>
+            <td>
+                <form method="post">
+                    <input type="submit" value="View" asp-route-acct=@(a.AccountNumber)/>
+                </form>
+            </td>
+        </tr>
+	}
+</table>

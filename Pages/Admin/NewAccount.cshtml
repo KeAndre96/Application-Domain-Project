@@ -1,0 +1,65 @@
+﻿@page
+@model AppDomainProject.NewAccountModel
+@{
+    ViewData["Title"] = "NewAccount";
+}
+
+<h1>NewAccount</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Account.AccountName"></label>
+        <input asp-for="Account.AccountName" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Account.AccountNumber"></label>
+        <input asp-for="Account.AccountNumber" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Account.AccountDescription"></label>
+        <input asp-for="Account.AccountDescription" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Account.AccountCategory"></label>
+        <input asp-for="Account.AccountCategory" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Account.AccountSubCategory"></label>
+        <input asp-for="Account.AccountSubCategory" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Account.InitialBalance"></label>
+        <input asp-for="Account.InitialBalance" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Account.Order"></label>
+        <input asp-for="Account.Order" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Account.Statement"></label>
+        <input asp-for="Account.Statement" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Account.NormalSide"></label>
+        <input asp-for="Account.NormalSide" />
+    </div>
+
+    <input type="submit" value="Create" />
+
+    <div>
+        <input hidden asp-for="Account.Balance" />
+        <input hidden asp-for="Account.Credit" />
+        <input hidden asp-for="Account.Debit" />
+        <input hidden asp-for="Account.ID" />
+        <input hidden asp-for="Account.TimeAccountAdded" />
+        <input hidden asp-for="Account.Comment" />
+    </div>
+</form>
