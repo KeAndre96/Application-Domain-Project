@@ -45,7 +45,7 @@ namespace AppDomainProject
 
         [DataType(DataType.Date)]
         [BindProperty]
-        public string DOB { get; set; }
+        public DateTime DOB { get; set; }
 
         [Display(Name = "Address")]
         [BindProperty]
@@ -100,7 +100,7 @@ namespace AppDomainProject
                     return Page();
                 }
 
-                PersonalInfoData pi = new PersonalInfoData { ID = FirstName[0] + LastName + DOB.ToString("mmyy"), FirstName = FirstName, LastName = LastName, DOB, Address = Address };
+                PersonalInfoData pi = new PersonalInfoData { ID = FirstName[0] + LastName + DOB.ToString("mmyy"), FirstName = FirstName, LastName = LastName, DOB = DOB, Address = Address };
                 _context.PersonalInfoData.Add(pi);
 
                 UserInfoData temp = new UserInfoData { ID = pi.ID, Status = AccountStatus.Pending, Email = Email, Class = AccountType.User };
