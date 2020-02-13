@@ -63,7 +63,7 @@ namespace AppDomainProject
 
             MailMessage msg = new MailMessage();
             msg.Subject = "Create Password";
-            msg.Body = "https://localhost:44378/Data/Password/Create";
+            msg.Body = "https://localhost:44378";
             string ToAddress = tempUser.Email;
             //string ToAddress = "Admin <appdomtest@gmail.com>";
             msg.To.Add(ToAddress);
