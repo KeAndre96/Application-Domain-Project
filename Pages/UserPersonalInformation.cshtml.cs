@@ -100,7 +100,7 @@ namespace AppDomainProject
                     return Page();
                 }
 
-                PersonalInfoData pi = new PersonalInfoData { ID = Id, FirstName = FirstName, LastName = LastName, DOB = Convert.ToDateTime(DOB), Address = Address };
+                PersonalInfoData pi = new PersonalInfoData { ID = FirstName[0] + LastName + DOB.ToString("mmyy"), FirstName = FirstName, LastName = LastName, DOB, Address = Address };
                 _context.PersonalInfoData.Add(pi);
 
                 UserInfoData temp = new UserInfoData { ID = pi.ID, Status = AccountStatus.Pending, Email = Email, Class = AccountType.User };
