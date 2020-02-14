@@ -12,3 +12,9 @@
 <h3>Side</h3>
 <p>@Model.GetSideLabel()</p>
 
+@if (Model.UserIsAdmin())
+{
+    <a href="/Admin/EditAccount/@Model.Account.AccountNumber">Edit</a>
+}
+<br />
+<a href="../Accounts">Back</a>
