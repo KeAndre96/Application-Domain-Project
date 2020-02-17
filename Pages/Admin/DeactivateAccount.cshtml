@@ -1,0 +1,24 @@
+﻿@page
+@model AppDomainProject.DeactivateAccountModel
+@{
+    ViewData["Title"] = "Confirm Deactivation";
+}
+
+@if (Model.Allowed)
+{
+    <h1>Confirm Deactivation?</h1>
+    <h2>Account: @Model.Account.AccountName - @Model.Account.AccountNumber</h2>
+    <p>Are you sure you want to deactivate this account?</p>
+    <form method="post">
+        <input type="submit", asp-page-handler="Confirm" value="Deactivate" class="btn btn-danger" asp-route-acct="@Model.Account.AccountNumber"/>
+        <input type="submit", asp-page-handler="Cancel" value="Cancel" asp-route-acct="@Model.Account.AccountNumber"/>
+    </form>
+}
+else
+{
+    <h1>Cannot Deactivate!</h1>
+    <p>You cannot deactivate an account with an outstanding balance.</p>
+    <form method="post">
+        <input type="submit", asp-page-handler="Cancel" value="Back" asp-route-acct="@Model.Account.AccountNumber"/>
+    </form>
+}

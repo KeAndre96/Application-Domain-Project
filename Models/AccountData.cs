@@ -49,6 +49,8 @@ namespace AppDomainProject.Models
 
         public string Comment { get; set; }
 
+        public bool Active { get; set; } = true;
+
         public enum AccountStatement
         {
             IS,

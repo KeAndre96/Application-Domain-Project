@@ -4,9 +4,9 @@
     ViewData["Title"] = "ForgotPassword";
 }
 
-    <div class="text-left">
-        <img src="~/Images/Logo.PNG" style="margin:0 auto; width:25%;" />
-    </div>
+<div class="text-left">
+    <img src="~/Images/Logo.PNG" style="margin:0 auto; width:25%;" />
+</div>
 @if (Model.PageState == 0)
 {
     <h1 class="display-4">Forgot Password</h1>
@@ -32,6 +32,9 @@
             </div>
         </div>
     </form>
+    <div align="right" valign="bottom">
+        <input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
+    </div>
 }
 @if (Model.PageState == 1)
 {
@@ -63,6 +66,9 @@
             </div>
         </div>
     </form>
+    <div align="right" valign="bottom">
+        <input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
+    </div>
 }
 
 @if (Model.PageState == 2)
@@ -87,6 +93,9 @@
                 <input asp-page-handler="FinishNewPWCancel" type="submit" value="Cancel" class="btn btn-primary" />
                 <input asp-page-handler="FinishNewPW" type="submit" value="Send" class="btn btn-primary" />
             </div>
+        </div>
+        <div align="right" valign="bottom">
+            <input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
         </div>
     </form>
 }
