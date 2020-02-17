@@ -25,7 +25,7 @@ namespace AppDomainProject
             {
                 query = query.Where(s => s.AccountName.Contains(searchString));
             }
-            //query = query.Where(n => n.Active);
+            query = query.Where(n => n.Active);
             Accounts = query.ToList();
       
             //TODO: SORT ACCOUNTS
