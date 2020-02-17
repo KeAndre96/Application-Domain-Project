@@ -34,8 +34,8 @@ namespace AppDomainProject
             Account.Credit = 0;
             Account.Debit = 0;
             Account.Balance = Account.InitialBalance;
-
             Account.NormalSide = Side.Equals(Sides[0]);
+            Account.Active = true;
 
             _context.Attach(Account).State = Microsoft.EntityFrameworkCore.EntityState.Added;
             _context.SaveChanges();

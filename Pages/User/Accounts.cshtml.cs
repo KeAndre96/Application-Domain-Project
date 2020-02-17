@@ -20,7 +20,7 @@ namespace AppDomainProject
         public void OnGet()
         {
             var query = from m in _context.AccountData select m;
-            query = query.Where(n => n.Active);
+            //query = query.Where(n => n.Active);
             Accounts = query.ToList();
             //TODO: SORT ACCOUNTS
         }

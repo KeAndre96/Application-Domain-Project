@@ -31,10 +31,13 @@ namespace AppDomainProject.Models
         [DisplayName("Initial Balance")]
         public double InitialBalance { get; set; }
 
+        [DataType(DataType.Currency)]
         public double Debit { get; set; }
-
+        
+        [DataType(DataType.Currency)]
         public double Credit { get; set; }
 
+        [DataType(DataType.Currency)]
         public double Balance { get; set; }
 
         [DataType(DataType.Date)]
