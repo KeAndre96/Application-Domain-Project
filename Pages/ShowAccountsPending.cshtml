@@ -7,9 +7,9 @@
 	<div class="text-left">
 		<img src="~/Images/Logo.PNG" style="margin:0 auto; width:25%;" />
 	</div>
-<div class="text-center">
-	<h1 class="display-4">Lists of Accounts Pending</h1>
-	
+	<div class="text-center">
+		<h1 class="display-4">Lists of Accounts Pending</h1>
+
 		<table class="table">
 			<thead>
 				<tr>
@@ -40,7 +40,7 @@
 							</td>
 							<td>
 								<form method="post">
-									<input type="submit" value="Delete" asp-route-id=@item.ID  asp-page-handler="delete" />
+									<input type="submit" value="Delete" asp-route-id=@item.ID asp-page-handler="delete" />
 								</form>
 							</td>
 						</tr>
@@ -48,5 +48,8 @@
 				}
 			</tbody>
 		</table>
-	
+		<div align="right" valign="bottom">
+			<input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
+		</div>
+
 	</div>
