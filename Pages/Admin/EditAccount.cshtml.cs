@@ -40,5 +40,10 @@ namespace AppDomainProject
             _context.SaveChanges();
             return Redirect($"/User/Account/{Account.AccountNumber}");
         }
+
+        public IActionResult OnPostDeactivate()
+        {
+            return Redirect($"../DeactivateAccount?acct={Account.AccountNumber}");
+        }
     }
 }
