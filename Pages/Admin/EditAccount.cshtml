@@ -1,21 +1,16 @@
-﻿@page
-@model AppDomainProject.NewAccountModel
+﻿@page "{acct}"
+@model AppDomainProject.EditAccountModel
 @{
-    ViewData["Title"] = "New Account";
+    ViewData["Title"] = "Edit Account";
 }
 @using AppDomainProject.Models;
 
-<h1>New Account</h1>
+<h1>Edit Account</h1>
 
 <form method="post">
     <div class="form-group">
         <label asp-for="Account.AccountName"></label>
         <input asp-for="Account.AccountName" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Account.AccountNumber"></label>
-        <input asp-for="Account.AccountNumber" />
     </div>
 
     <div class="form-group">
@@ -50,11 +45,11 @@
 
     <div class="form-group">
         <label asp-for="Account.NormalSide"></label> <br />
-        <input type="radio" asp-for="Side" value="@Model.Sides[0]" />@Model.Sides[0]<br />
+        <input type="radio" asp-for="Side" value="@Model.Sides[0]"  />@Model.Sides[0]<br />
         <input type="radio" asp-for="Side" value="@Model.Sides[1]" />@Model.Sides[1]<br />
     </div>
 
-    <input type="submit" value="Create" />
+    <input type="submit" value="Save" />
 
     <div>
         <input hidden asp-for="Account.Balance" />
@@ -64,8 +59,6 @@
         <input hidden asp-for="Account.TimeAccountAdded" />
         <input hidden asp-for="Account.Comment" />
         <input hidden asp-for="Account.NormalSide" />
+        <input hidden asp-for="Account.AccountNumber" />
     </div>
 </form>
-<div align="right" valign="bottom">
-    <input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
-</div>

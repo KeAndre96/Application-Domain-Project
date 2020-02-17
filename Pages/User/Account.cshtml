@@ -15,3 +15,9 @@
     <input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
 </div>
 
+@if (Model.UserIsAdmin())
+{
+    <a href="/Admin/EditAccount/@Model.Account.AccountNumber">Edit</a>
+}
+<br />
+<a href="../Accounts">Back</a>

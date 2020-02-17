@@ -29,18 +29,18 @@ namespace AppDomainProject
 
         [Display(Name = "ID")]
         [BindProperty]
-        [Required]
+        //[Required]
         public string Id { get; set; }
 
 
         [Display(Name = "First Name")]
         [BindProperty]
-        [Required]
+        //[Required]
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
         [BindProperty]
-        [Required]
+        //[Required]
         public string LastName { get; set; }
 
         [DataType(DataType.Date)]
@@ -49,17 +49,17 @@ namespace AppDomainProject
 
         [Display(Name = "Address")]
         [BindProperty]
-        [Required]
+        //[Required]
         public string Address { get; set; }
 
         [Display(Name = "Email")]
         [BindProperty]
-        [Required]
+        //[Required]
         public string Email { get; set; }
 
         [DataType(DataType.Password)]
         [BindProperty]
-        [Required]
+        //[Required]
         public string Password { get; set; }
         
         public PersonalInfoData PersonalInfoData { get; set; }

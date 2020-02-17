@@ -8,43 +8,37 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AppDomainProject
 {
-    public class AccountModel : AuthenticatedPageModel
+    public class EditAccountModel : AdminPageModel
     {
-        public AccountModel(AppDomainProjectContext context) : base(context)
+        public EditAccountModel(AppDomainProjectContext context) : base(context)
         {
         }
 
         [BindProperty]
         public AccountData Account { get; set; }
+        [BindProperty]
+        public string Side { get; set; }
+        public string[] Sides = new string[] { "Credit", "Debit" };
 
         public IActionResult OnGet(string acct)
         {
             var query = from m in _context.AccountData select m;
             query = query.Where(n => n.AccountNumber.Equals(acct));
+
             Account = query.FirstOrDefault();
             if (Account == null)
                 return NotFound();
             return Page();
         }
 
-        public string GetSideLabel()
+        public IActionResult OnPost()
         {
-            return Account.NormalSide ? "Credit" : "Debit";
-        }
+            if(!string.IsNullOrEmpty(Side))
+                Account.NormalSide = Side.Equals(Sides[0]);
 
-        public string GetCategoryLabel()
-        {
-            string label = Account.AccountCategory;
-            if (!string.IsNullOrEmpty(Account.AccountSubCategory))
-            {
-                label += '/' + Account.AccountSubCategory;
-            }
-            return label;
-        }
-
-        public bool UserIsAdmin()
-        {
-            return UserInfo.Class == AccountType.Admin;
+            _context.Attach(Account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.SaveChanges();
+            return Redirect($"/User/Account/{Account.AccountNumber}");
         }
     }
 }
