@@ -6,12 +6,12 @@
 }
 
 <h1>Accounts</h1>
-<form asp-action="Index" method="get">
+<form asp-action="Search" method="get">
     <div class="form-actions no-color">
         <p>
-            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            Find by name: <input type="text" name="SearchString" />
             <input type="submit" value="Search" class="btn btn-primary" />
-            <a asp-action="Index">Back to Full List</a>
+            <a asp-action="Accounts">Back to Full List</a>
         </p>
     </div>
 </form>
@@ -24,6 +24,7 @@
             <th></th>
         </tr>
     </thead>
+    <tbody>
     @foreach(AccountData a in Model.Accounts)
 	{
         <tr>
@@ -37,6 +38,7 @@
             </td>
         </tr>
 	}
+    </tbody>
 </table>
 <div align="right" valign="bottom">
     <input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
