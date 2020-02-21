@@ -1,0 +1,65 @@
+﻿@page
+@model AppDomainProject.Pages.Data.Transactions.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TransactionData</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TransactionData.ID" />
+            <div class="form-group">
+                <label asp-for="TransactionData.Journal" class="control-label"></label>
+                <input asp-for="TransactionData.Journal" class="form-control" />
+                <span asp-validation-for="TransactionData.Journal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionData.AccountNumber" class="control-label"></label>
+                <input asp-for="TransactionData.AccountNumber" class="form-control" />
+                <span asp-validation-for="TransactionData.AccountNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionData.Name" class="control-label"></label>
+                <input asp-for="TransactionData.Name" class="form-control" />
+                <span asp-validation-for="TransactionData.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionData.Description" class="control-label"></label>
+                <input asp-for="TransactionData.Description" class="form-control" />
+                <span asp-validation-for="TransactionData.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionData.Ammount" class="control-label"></label>
+                <input asp-for="TransactionData.Ammount" class="form-control" />
+                <span asp-validation-for="TransactionData.Ammount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionData.TransactionDate" class="control-label"></label>
+                <input asp-for="TransactionData.TransactionDate" class="form-control" />
+                <span asp-validation-for="TransactionData.TransactionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionData.UserID" class="control-label"></label>
+                <input asp-for="TransactionData.UserID" class="form-control" />
+                <span asp-validation-for="TransactionData.UserID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

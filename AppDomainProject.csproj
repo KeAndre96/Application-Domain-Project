@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200221150433_transaction_initial.cs" />
+    <Compile Remove="Migrations\20200221150433_transaction_initial.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\Images\Logo.PNG">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
