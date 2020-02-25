@@ -24,5 +24,7 @@ namespace AppDomainProject.Models
         public DbSet<AppDomainProject.Models.AccountData> AccountData { get; set; }
 
         public DbSet<AppDomainProject.Models.TransactionData> TransactionData { get; set; }
+
+        public DbSet<JournalData> JournalData { get; set; }
     }
 }

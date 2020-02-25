@@ -1,0 +1,24 @@
+﻿@page
+@model AppDomainProject.JournalModel
+@{
+    ViewData["Title"] = "Journal";
+}
+
+<h1>Journal</h1>
+@for(int i = 0; i < Model.Transactions.Count; i++)
+{
+    <p>@Model.TransactionText(i)</p>
+}
+
+<h2>New Entry</h2>
+
+<form method="post">
+    <div class=" form-group">
+        <label asp-for="NewTransaction.AccountNumber"></label>
+        <select asp-for="NewTransaction.AccountNumber" asp-items="Model.GetAccounts()"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="NewTransaction.Ammount"></label>
+        <input asp-for="NewTransaction.Ammount" />
+    </div>
+</form>

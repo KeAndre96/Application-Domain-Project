@@ -11,7 +11,7 @@ namespace AppDomainProject.Models
         [Key]
         public int ID { get; set; }
 
-        public string Journal { get; set; }
+        public int Journal { get; set; }
 
         public string AccountNumber { get; set; }
 
@@ -19,11 +19,10 @@ namespace AppDomainProject.Models
 
         public string Description { get; set; }
 
+        [DataType(DataType.Currency)]
         public double Ammount { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime TransactionDate { get; set; }
-
-        public string UserID { get; set; }
     }
 }
