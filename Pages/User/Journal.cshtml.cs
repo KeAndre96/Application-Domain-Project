@@ -21,6 +21,9 @@ namespace AppDomainProject
         [BindProperty]
         public TransactionData NewTransaction { get; set; }
 
+        [BindProperty]
+        public int? Journal { get; set; }
+
         public void OnGet(int? journal)
         {
             Transactions = new List<TransactionData>();
@@ -32,11 +35,81 @@ namespace AppDomainProject
                     return (a.Ammount - b.Ammount) < 0 ? 1: -1;
                 });
             }
+
+            Journal = journal;
+            NewTransaction = new TransactionData();
+            NewTransaction.TransactionDate = DateTime.Now;
         }
 
-        public string TransactionText(int i)
+        public IActionResult OnPostAddTransaction(int? journal)
         {
-            return $"{Transactions[i].AccountNumber} - {Transactions[i].Name}: {Transactions[i].Ammount}";
+            int journalId;
+            if(journal == null)
+            {
+                JournalData newJournal = new JournalData
+                {
+                    usetID = UserInfo.ID,
+                    JournalStatus = JournalData.Status.incomplete
+                };
+                _context.Attach(newJournal).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+                _context.SaveChanges();
+                journalId = newJournal.ID;
+            }
+            else
+            {
+                journalId = journal.Value;
+            }
+
+            NewTransaction.Journal = journalId;
+            _context.Attach(NewTransaction).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+            _context.SaveChanges();
+
+            return Redirect($"./Journal?journal={journalId}");
+        }
+
+        public IActionResult OnPostRemoveTransaction(int transaction, int? journal)
+        {
+            TransactionData t = (from m in _context.TransactionData where m.ID == transaction select m).FirstOrDefault();
+            _context.Attach(t).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            _context.SaveChanges();
+
+            return Redirect($"./Journal?journal={journal.Value}");
+        }
+
+        public IActionResult OnPostSubmit(int journal)
+        {
+            if(UserInfo.Class == AccountType.Manager) //Manager's journals are automatically approved
+            {
+                JournalData j = (from m in _context.JournalData where m.ID == journal select m).FirstOrDefault();
+                j.JournalStatus = JournalData.Status.approved;
+                _context.Attach(j).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                _context.SaveChanges();
+                return Redirect("");
+            }
+            else //Other journals need to be approved by a manager
+            {
+                JournalData j = (from m in _context.JournalData where m.ID == journal select m).FirstOrDefault();
+                j.JournalStatus = JournalData.Status.pending;
+                _context.Attach(j).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                _context.SaveChanges();
+                return Redirect("");
+            }
+        }
+
+        public JournalEntry JournalLine(int i)
+        {
+            return new JournalEntry
+            {
+                TransactionName = Transactions[i].Name,
+                Ammount = Transactions[i].Ammount,
+                Desc = Transactions[i].Description,
+                AccountName = (from m in _context.AccountData where m.AccountNumber == Transactions[i].AccountNumber select m.AccountName).FirstOrDefault()
+            };
+        }
+
+        public string JournalLabelText()
+        {
+            return Journal == null ? "New Journal" : $"Journal - {Journal.Value}";
         }
 
         public IEnumerable<SelectListItem> GetAccounts()
@@ -64,6 +137,14 @@ namespace AppDomainProject
                     Transactions.Add(t);
                 }
             }
+        }
+
+        public class JournalEntry
+        {
+            public string AccountName { get; set; }
+            public string TransactionName { get; set; }
+            public double Ammount { get; set; }
+            public string Desc { get; set; }
         }
     }
 }
