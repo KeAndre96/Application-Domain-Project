@@ -1,0 +1,33 @@
+﻿@page
+@model AppDomainProject.EventLogModel
+
+@{
+    ViewData["Title"] = "EventLog";
+}
+
+<h1>EventLog</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EventLogData[0].log)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.EventLogData) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.log)
+            </td>
+            <td>
+                <form method="post">
+                    <input type="submit" value="Delete" asp-route-id=@item.id asp-page-handler="delete" />
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
