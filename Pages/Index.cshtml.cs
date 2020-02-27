@@ -32,11 +32,24 @@ namespace AppDomainProject.Pages
             _context = context;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if(HttpContext.User.FindFirst("Class") != null)
+            {
+                switch (HttpContext.User.FindFirst("Class").Value)
+                {
+                    case "Admin": return Redirect("Admin");
+                    case "Manager": return Redirect("Manager");
+                    case "User": return Redirect("User");
+                    default: return NotFound();
+                }
+            }
+            
+
             Id = "";
             Pass = "";
             ModelState.Clear();
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
