@@ -31,9 +31,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.TransactionData[0].TransactionDate)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TransactionData[0].UserID)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -58,9 +55,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TransactionDate)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserID)
-            </td>
+
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
