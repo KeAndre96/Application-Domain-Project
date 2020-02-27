@@ -1,0 +1,36 @@
+﻿@page
+@model AppDomainProject.JournalsModel
+@{
+    ViewData["Title"] = "Journals";
+}
+
+<h1>Journals</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Journal</th>
+            <th>Author</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (JournalsModel.TableRow j in Model.Journals)
+    {
+        <tr>
+            <td>
+                @j.Journal
+            </td>
+            <td>
+                @j.Author
+            </td>
+            <td>
+                <a asp-page="./ViewJournal/@j.Journal">view</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<a asp-page="./PendingJournals">Pending</a>
+<br />
+<a asp-page="./Journal">New Journal</a>

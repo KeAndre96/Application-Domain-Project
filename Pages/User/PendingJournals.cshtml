@@ -1,0 +1,57 @@
+﻿@page
+@model AppDomainProject.PendingJournalsModel
+@{
+    ViewData["Title"] = "Pending Journals";
+}
+
+<h1>Pending Journals</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Journal</th>
+            <th>Author</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (JournalsModel.TableRow j in Model.Pending)
+    {
+        <tr>
+            <td>
+                @j.Journal
+            </td>
+            <td>
+                @j.Author
+            </td>
+            <td>
+                <a asp-page="./ViewJournal/@j.Journal">view</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<h1>In Progress</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Journal</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (JournalsModel.TableRow j in Model.InProgress)
+    {
+        <tr>
+            <td>
+                @j.Journal
+            </td>
+            <td>
+                <a href="./Journal?journal=@j.Journal">edit</a>
+            </td>
+        </tr>
+    }
+</table>
+
+
+<a asp-page="./Journals">Approved Journals</a>
+<br />
+<a asp-page="./Journal">New Journal</a>
