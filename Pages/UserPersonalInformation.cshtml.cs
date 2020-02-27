@@ -101,7 +101,7 @@ namespace AppDomainProject
                     return Page();
                 }
 
-                PersonalInfoData pi = new PersonalInfoData { ID = FirstName[0] + LastName + DOB.ToString("MMyy"), FirstName = FirstName, LastName = LastName, DOB = DOB, Address = Address };
+                PersonalInfoData pi = new PersonalInfoData { ID = FirstName[0] + LastName  + DOB.ToString("MM") + DOB.ToString("yy"), FirstName = FirstName, LastName = LastName, DOB = DOB, Address = Address };
                 _context.PersonalInfoData.Add(pi);
 
                 UserInfoData temp = new UserInfoData { ID = pi.ID, Status = AccountStatus.Pending, Email = Email, Class = AccountType.User, PasswordSetDate = DateTime.Today, PasswordExpirationDate = (DateTime.Today.AddDays(180)) };

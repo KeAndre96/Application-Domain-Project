@@ -70,6 +70,8 @@ namespace AppDomainProject.Pages
         }
         public ActionResult OnPostIdEmailNext()
         {
+            //TODO Insert email+Id auth here
+            //then proceed to two lines below 
             PageState++;
             return Redirect("./ForgotPW?pageState=" + PageState);
         }
@@ -87,6 +89,8 @@ namespace AppDomainProject.Pages
 
         public ActionResult OnPostSecQuestionsNext()
         {
+            //TODO Insert sec questions auth here
+            //then proceed to two lines below
             PageState = 2;
             return Redirect("./ForgotPW?pageState=" + PageState);
         }
@@ -97,7 +101,7 @@ namespace AppDomainProject.Pages
             return Redirect("./Index");
         }
 
-        /*
+
           public async Task<IActionResult> OnPost()
          {
              if (await ValidateAsync())
@@ -123,6 +127,6 @@ namespace AppDomainProject.Pages
              UserInfoData user = users[0];
              return user.Email.Equals(Email);
          }
-         */
+        
     }
 }
