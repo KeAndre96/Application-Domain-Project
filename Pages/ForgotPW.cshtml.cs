@@ -12,8 +12,12 @@ namespace AppDomainProject.Pages
 {
     public class ForgotPWModel : PageModel
     {
-        private readonly ILogger<ForgotPWModel> _logger;
+        //Primary constructor and local variables
+        //private readonly ILogger<ForgotPWModel> _logger;
         private readonly AppDomainProjectContext _context;
+        private string tempID;
+        private string NewPassword;
+
         [BindProperty]
         public int PageState { get; set; } = 0;
 
@@ -72,6 +76,7 @@ namespace AppDomainProject.Pages
         {
             //TODO Insert email+Id auth here
             //then proceed to two lines below 
+            tempID = Id;
             PageState++;
             return Redirect("./ForgotPW?pageState=" + PageState);
         }
@@ -101,7 +106,15 @@ namespace AppDomainProject.Pages
             return Redirect("./Index");
         }
 
-
+        /*public ActionResult OnPostFinishNewPW(string ID)
+        {
+            var query = from u in _context.PasswordData select u
+            PasswordData pd = new PasswordData { ID = tempID, Password = NewPassword };
+            _context.Attach(pd).State= EntityState.Modified;
+            _context.SaveChanges();
+            return Redirect("./Index");
+        }
+        */
           public async Task<IActionResult> OnPost()
          {
              if (await ValidateAsync())

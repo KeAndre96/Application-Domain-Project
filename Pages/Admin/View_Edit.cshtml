@@ -4,10 +4,6 @@
     ViewData["Title"] = "View/Edit User Info";
 }
 
-	<div class="text-left">
-		<img src="~/Images/Logo.PNG" style="margin:0 auto; width:25%;" />
-	</div>
-
 <h1>User: @Model.Info.ID</h1>
 
 <form method="post">
@@ -46,7 +42,7 @@
 			<input type="submit" value="Edit" asp-page-handler="Edit" />
 		</div>
 	}
-	<a href=".Admin/Users">Back</a>
+	<a href="/Admin/Users">Back</a>
 </form>
 
 
