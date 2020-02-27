@@ -35,10 +35,13 @@ namespace AppDomainProject
                     return (a.Ammount - b.Ammount) < 0 ? 1: -1;
                 });
             }
+            
 
             Journal = journal;
-            NewTransaction = new TransactionData();
-            NewTransaction.TransactionDate = DateTime.Now;
+            NewTransaction = new TransactionData
+            {
+                TransactionDate = DateTime.Now
+            };
         }
 
         public IActionResult OnPostAddTransaction(int? journal)
@@ -84,7 +87,7 @@ namespace AppDomainProject
                 j.JournalStatus = JournalData.Status.approved;
                 _context.Attach(j).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _context.SaveChanges();
-                return Redirect("");
+                return Redirect("./Journals");
             }
             else //Other journals need to be approved by a manager
             {
@@ -92,7 +95,7 @@ namespace AppDomainProject
                 j.JournalStatus = JournalData.Status.pending;
                 _context.Attach(j).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _context.SaveChanges();
-                return Redirect("");
+                return Redirect("./PendingJournals");
             }
         }
 
