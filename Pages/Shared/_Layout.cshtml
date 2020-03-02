@@ -6,14 +6,27 @@
     <title>@ViewData["Title"] - AppDomainProject</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
+        $(function () {
+          $('#datetimepicker').datetimepicker({
+            ignoreReadonly: true
+          });
+        });
+     </script>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <div class="navbar-brand" asp-area="" asp-page="/Index" >
-                    <a><img src="~/Images/Logo.PNG" style="margin:0 auto; width:15%" /></a>
+                <div class="navbar-brand" asp-area="" asp-page="/Index">
+                    <a><img src="~/Images/Logo.PNG" style="margin:0 auto; width:18%" /></a>
                     <ul class="navbar-nav flex-grow-1">
+                        <li class="datepicker-dropdown" style="width:25%; margin-right:10px">
+                            <input type="text" class="form-control" readonly>
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
@@ -26,18 +39,8 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Logout">Logout</a>
                         </li>
-                        <li class="nav-item">
-                            <label asp-handler="Date">Date Pending</label>
-                        </li>
                     </ul>
                 </div>
-
-                <!--
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-        -->
             </div>
         </nav>
     </header>
