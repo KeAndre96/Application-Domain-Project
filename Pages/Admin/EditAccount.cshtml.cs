@@ -60,7 +60,8 @@ namespace AppDomainProject
             var ans = _context.EventLogData.Find(id);
             if(ans == null)
             {
-                sb.Append(UserInfo.ID + " changed something in Chart of Accounts");
+                DateTime localDate = DateTime.Now;
+                sb.Append(UserInfo.ID + " changed something in Chart of Accounts: " + localDate);
                 EventLogData temp = new EventLogData { id = id, log = sb.ToString() };
                 _context.EventLogData.Add(temp);
             }
@@ -71,7 +72,8 @@ namespace AppDomainProject
                     id = r.Next().ToString();
                     ans = _context.EventLogData.Find(id);
                 }
-                sb.Append(UserInfo.ID + " changed something in Chart of Accounts");
+                DateTime localDate = DateTime.Now;
+                sb.Append(UserInfo.ID + " changed something in Chart of Accounts: " + localDate);
                 EventLogData temp = new EventLogData { id = id, log = sb.ToString() };
                 _context.EventLogData.Add(temp);
             }
