@@ -4,17 +4,25 @@
 	ViewData["Title"] = "Dashboard";
 }
 
-	<div class="text-left">
-		<img src="~/Images/Logo.PNG" style="margin:0 auto; width:25%;" />
-	</div>
+<div class="text-left">
+	<img src="~/Images/Logo.PNG" style="margin:0 auto; width:25%;" />
+</div>
 
 <h1>Welcome, @Model.Name</h1>
 <h2>@Model.Username</h2>
 
-<a asp-page="./Users">Manage Users</a> <br />
-<a asp-page="/User/Accounts">Financial Accounts</a> <br />
-<a asp-page="./NewAccount">Create New Financial Account</a> <br />
-<a asp-page="./EventLog">View Event Log</a> <br /> 
+<a asp-page="./Users">Manage Users</a>
+<br />
+<a asp-page="/User/Accounts">Financial Accounts</a>
+<br />
+<a asp-page="./NewAccount">Create New Financial Account</a>
+<br />
+<a asp-page="./EventLog">View Event Log</a>
+<br />
+<a asp-page="/User/Accounts">Financial Accounts</a>
+<br />
+<a asp-page="/User/Journals">Journals</a>
+<br />
 <div align="right" valign="bottom">
-				<input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
-			</div>
+	<input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
+</div>
