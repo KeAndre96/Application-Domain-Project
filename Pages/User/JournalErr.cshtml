@@ -1,0 +1,9 @@
+﻿@page
+@model AppDomainProject.JournalErrModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1>Journal not balanced!</h1>
+<p class="alert-danger">Journal balance: @Model.Total</p>
+<a href="./Journal?journal=@Model.Journal">Back</a>
