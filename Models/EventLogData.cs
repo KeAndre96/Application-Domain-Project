@@ -12,5 +12,9 @@ namespace AppDomainProject.Models
         public string id { get; set; }
 
         public string log { get; set; }
+
+        public string before_image { get; set; }
+        
+        public string after_image { get; set; }
     }
 }

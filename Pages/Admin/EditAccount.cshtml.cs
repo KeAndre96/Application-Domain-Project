@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Newtonsoft.Json;
 
 namespace AppDomainProject
 {
@@ -48,7 +49,7 @@ namespace AppDomainProject
             string columnName = "";
             foreach(EntityEntry e in _context.ChangeTracker.Entries())
             {
-                if(e.State.Equals("Modified"))
+                if(e.State.Equals(Microsoft.EntityFrameworkCore.EntityState.Modified))
                 {
                     columnName = e.Entity.ToString();
                 }
@@ -62,7 +63,7 @@ namespace AppDomainProject
             {
                 DateTime localDate = DateTime.Now;
                 sb.Append(UserInfo.ID + " changed something in Chart of Accounts: " + localDate);
-                EventLogData temp = new EventLogData { id = id, log = sb.ToString() };
+                EventLogData temp = new EventLogData { id = id, log = sb.ToString(), before_image = "", after_image = JsonConvert.SerializeObject(Account) };
                 _context.EventLogData.Add(temp);
             }
             else
@@ -74,7 +75,7 @@ namespace AppDomainProject
                 }
                 DateTime localDate = DateTime.Now;
                 sb.Append(UserInfo.ID + " changed something in Chart of Accounts: " + localDate);
-                EventLogData temp = new EventLogData { id = id, log = sb.ToString() };
+                EventLogData temp = new EventLogData { id = id, log = sb.ToString(), before_image = "", after_image = JsonConvert.SerializeObject(Account) };
                 _context.EventLogData.Add(temp);
             }
             _context.SaveChanges();

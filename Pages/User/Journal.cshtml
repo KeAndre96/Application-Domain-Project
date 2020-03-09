@@ -5,6 +5,15 @@
 }
 
 <h1>Journal</h1>
+<form asp-action="Search" method="get">
+<div class="form-actions no-color">
+    <p>
+        Find by name: <input type="text" name="SearchString" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-action="Journal">Back to Full List</a>
+    </p>
+</div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -25,7 +34,7 @@
             <td>@line.Desc</td>
             <td>
                 <form method="post">
-                    <input type="submit" value="Delete" asp-page-handler="RemoveTransaction" asp-route-transaction="@Model.Transactions[i].ID" asp-route-journal="@Model.Journal"/>
+                    <input type="submit" value="Delete" asp-page-handler="RemoveTransaction" asp-route-transaction="@Model.Transactions[i].ID" asp-route-journal="@Model.Journal" />
                 </form>
             </td>
         </tr>
@@ -57,13 +66,13 @@
         <input asp-for="NewTransaction.TransactionDate" />
     </div>
 
-    <input type="submit" value="Add" asp-page-handler="AddTransaction" asp-route-journal="@Model.Journal"/>
+    <input type="submit" value="Add" asp-page-handler="AddTransaction" asp-route-journal="@Model.Journal" />
 
     <input hidden asp-for="NewTransaction.ID" />
     <input hidden asp-for="NewTransaction.Journal" />
 </form>
 
-@if(Model.Journal != null)
+@if (Model.Journal != null)
 {
     <h2>Submit Journal</h2>
     <form method="post">
