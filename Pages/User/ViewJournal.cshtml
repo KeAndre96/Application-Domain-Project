@@ -1,0 +1,46 @@
+﻿@page "{journal}"
+@model AppDomainProject.Pages.User.ViewJournalModel
+@{
+	ViewData["Title"] = Model.JournalLabelText();
+}
+
+<h1>Journal @Model.JournalStatusTag()</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Account</th>
+			<th>Transaction Name</th>
+			<th>Ammount</th>
+			<th>Description</th>
+			
+		</tr>
+	</thead>
+	@for (int i = 0; i < Model.Transactions.Count; i++)
+	{
+		var line = Model.JournalLine(i);
+		<tr>
+			<td>@line.AccountName</td>
+			<td>@line.TransactionName</td>
+			<td>@line.Ammount</td>
+			<td>@line.Desc</td>
+			
+		</tr>
+	}
+</table>
+
+<form method="post">
+@if (Model.CanApprove() && Model.JournalData.JournalStatus == Models.JournalData.Status.pending)
+{
+	<div class="form-group">
+		<input type="submit" asp-page-handler="Approve" asp-route-journal="@Model.JournalData.ID" class="btn btn-primary" value="Approve" />
+		<input type="submit" asp-page-handler="Reject" asp-route-journal="@Model.JournalData.ID" class="btn btn-danger" value="Reject" />
+	</div>
+}
+</form>
+@if (Model.JournalData.JournalStatus == Models.JournalData.Status.pending)
+{
+	<a href="/User/PendingJournals">Back</a>
+}
+else { 
+	<a href="/User/Journals">Back</a>
+}
