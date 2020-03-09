@@ -32,21 +32,21 @@
 	@if (Model.EditMode)
 	{
 		<div class="form-group">
-			<input type="submit" value="Save" asp-page-handler="Save" />
-			<input type="submit" value="Cancel" asp-page-handler="Cancel" />
+			<input type="submit" value="Save" title="Click to save" asp-page-handler="Save" />
+			<input type="submit" value="Cancel" title="Click to cancel" asp-page-handler="Cancel" />
 		</div>
 	}
 	else
 	{
 		<div class="form-group">
-			<input type="submit" value="Edit" asp-page-handler="Edit" />
+			<input type="submit" value="Edit"title="Click to edit" asp-page-handler="Edit" />
 		</div>
 	}
-	<a href="/Admin/Users">Back</a>
+	<a href="/Admin/Users">Back </a>
 </form>
 
 
 
 <div align="right" valign="bottom">
-	<input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
+	<input type="submit" value="Help"  title=" Click to get "class="btn btn-danger" asp-page="HelpPages/Help" />
 </div>

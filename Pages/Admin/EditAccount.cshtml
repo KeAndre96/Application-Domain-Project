@@ -51,7 +51,7 @@
 
     <input type="submit" value="Save" />
 
-    <input type="submit" value="Deactivate" asp-page-handler="Deactivate" />
+    <input type="submit" value="Deactivate" title="Click to deactivate account" asp-page-handler="Deactivate" />
 
     <div>
         <input hidden asp-for="Account.Balance" />
@@ -68,5 +68,5 @@
 
 
 <div align="right" valign="bottom">
-    <input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
+    <input title="Click here to get help "type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
 </div>
