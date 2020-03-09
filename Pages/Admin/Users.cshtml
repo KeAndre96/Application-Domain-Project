@@ -32,7 +32,7 @@
 	{
 <tr>
 	<td>
-		@Html.DisplayFor(modelItem => u.ID) <form method="post"><input type="submit" value="Details" asp-page-handler="AcctDetails" , asp-route-id=@u.ID /></form>
+		@Html.DisplayFor(modelItem => u.ID) <form method="post"><input type="submit" value="Details" title="Click for user details" asp-page-handler="AcctDetails" , asp-route-id=@u.ID /></form>
 	</td>
 	<td>
 		@Html.DisplayFor(modelItem => u.Email)
@@ -53,22 +53,22 @@
 	<form method="post">
 		<div class="form-group">
 			<label asp-for="Email    " class="control-label"></label>
-			<input asp-for="Email" class="control-label" />
+			<input asp-for="Email" class="control-label" title="Please type email here" />
 		</div>
 		<div class="form-group">
 			<label asp-for="Subject" class="control-label"></label>
-			<input asp-for="Subject" class="control-label" />
+			<input asp-for="Subject" class="control-label" title="Please type subject here"/>
 		</div>
 		<div class="form-group">
 			<label asp-for="Body" class="control-label"></label>
-			<input asp-for="Body" class="control-label" />
+			<input asp-for="Body" class="control-label" title="Please type message here"/>
 		</div>
 		<div class="form-group">
-			<input asp-page-handler="Send" type="submit" value="Send" class="btn btn-primary" />
+			<input asp-page-handler="Send" type="submit" title="Click to Send an Email "value="Send" class="btn btn-primary" />
 		</div>
 	</form>
 
 </div>
 <div align="right" valign="bottom">
-	<input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
+	<input  title="Click here to get help "type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
 </div>

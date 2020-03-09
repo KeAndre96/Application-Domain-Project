@@ -91,6 +91,16 @@ namespace AppDomainProject
 
         public IActionResult OnPostSubmit(int journal)
         {
+            double total = 0;
+            foreach(int a in (from t in _context.TransactionData where t.Journal == journal select t.Ammount))
+            {
+                total += a;
+            }
+            if(total != 0)
+            {
+                return Redirect($"./JournalErr?journal={journal}");
+            }
+
             if(UserInfo.Class == AccountType.Manager) //Manager's journals are automatically approved
             {
                 JournalData j = (from m in _context.JournalData where m.ID == journal select m).FirstOrDefault();
