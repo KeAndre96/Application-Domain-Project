@@ -12,7 +12,8 @@ namespace AppDomainProject
    
     public class ViewEventLogDetailsModel : AdminPageModel
     {
-        public AccountData Account { get; set; }
+        public AccountData After { get; set; }
+        public AccountData Before { get; set; }
         public EventLogData Event { get; set; }
 
         public string Side { get; set; }
@@ -33,8 +34,8 @@ namespace AppDomainProject
             if (log == null)
                 return NotFound();
 
-            Account = JsonConvert.DeserializeObject<AccountData>(log.after_image);
-
+            After = JsonConvert.DeserializeObject<AccountData>(log.after_image);
+            Before = JsonConvert.DeserializeObject<AccountData>(log.before_image);
             return Page();
         }
 

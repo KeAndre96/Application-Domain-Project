@@ -23,7 +23,7 @@ namespace AppDomainProject
         [BindProperty]
         public string Side { get; set; }
         public string[] Sides = new string[] { "Credit", "Debit" };
-
+        public string before_image;
         public IActionResult OnGet(string acct)
         {
             var query = from m in _context.AccountData select m;
@@ -44,6 +44,8 @@ namespace AppDomainProject
                 //EventLogData temp = new EventLogData { id=}
             }
 
+            before_image = JsonConvert.SerializeObject(Account);
+
             _context.Attach(Account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
             string columnName = "";
@@ -63,7 +65,7 @@ namespace AppDomainProject
             {
                 DateTime localDate = DateTime.Now;
                 sb.Append(UserInfo.ID + " changed something in Chart of Accounts: " + localDate);
-                EventLogData temp = new EventLogData { id = id, log = sb.ToString(), before_image = "", after_image = JsonConvert.SerializeObject(Account) };
+                EventLogData temp = new EventLogData { id = id, log = sb.ToString(), before_image = before_image, after_image = JsonConvert.SerializeObject(Account) };
                 _context.EventLogData.Add(temp);
             }
             else
@@ -75,7 +77,7 @@ namespace AppDomainProject
                 }
                 DateTime localDate = DateTime.Now;
                 sb.Append(UserInfo.ID + " changed something in Chart of Accounts: " + localDate);
-                EventLogData temp = new EventLogData { id = id, log = sb.ToString(), before_image = "", after_image = JsonConvert.SerializeObject(Account) };
+                EventLogData temp = new EventLogData { id = id, log = sb.ToString(), before_image = before_image, after_image = JsonConvert.SerializeObject(Account) };
                 _context.EventLogData.Add(temp);
             }
             _context.SaveChanges();

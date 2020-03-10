@@ -4,66 +4,124 @@
     ViewData["Title"] = "ViewEventLogDetails";
 }
 @using AppDomainProject.Models;
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css">
 
-<div class="text-left">
-    <img src="~/Images/Logo.PNG" style="margin:0 auto; width:25%;" />
+<div class="row">
+    <div class = "col-6">
+        <h1>Before Image of Account</h1>
+        <form method="get">
+            <div class="form-group">
+                <label asp-for="Before.AccountName"></label>
+                <input asp-for="Before.AccountName" disabled/>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Before.AccountDescription"></label>
+                <input asp-for="Before.AccountDescription" disabled/>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Before.AccountCategory"></label>
+                <input asp-for="Before.AccountCategory" disabled/>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Before.AccountSubCategory"></label>
+                <input asp-for="Before.AccountSubCategory" disabled/>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Before.InitialBalance"></label>
+                <input asp-for="Before.InitialBalance" disabled/>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Before.Order"></label>
+                <input asp-for="Before.Order" disabled/>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Before.Statement"></label>
+                <select asp-for="Before.Statement" asp-items="Html.GetEnumSelectList<AccountData.AccountStatement>()" disabled></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Before.NormalSide"></label> <br />
+                <input type="radio" asp-for="Side" value="@Model.Sides[0]" disabled/>@Model.Sides[0]<br />
+                <input type="radio" asp-for="Side" value="@Model.Sides[1]" disabled/>@Model.Sides[1]<br />
+            </div>
+
+            <div>
+                <input hidden asp-for="Before.Balance" />
+                <input hidden asp-for="Before.Credit" />
+                <input hidden asp-for="Before.Debit" />
+                <input hidden asp-for="Before.ID" />
+                <input hidden asp-for="Before.TimeAccountAdded" />
+                <input hidden asp-for="Before.Comment" />
+                <input hidden asp-for="Before.NormalSide" />
+                <input hidden asp-for="Before.AccountNumber" />
+                <input hidden asp-for="Before.Active" />
+            </div>
+        </form>
+     </div>
+    <div class="col-6">
+        <h1>After Image of Account</h1>
+        <form method="get">
+            <div class="form-group">
+                <label asp-for="After.AccountName"></label>
+                <input asp-for="After.AccountName" disabled />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="After.AccountDescription"></label>
+                <input asp-for="After.AccountDescription" disabled />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="After.AccountCategory"></label>
+                <input asp-for="After.AccountCategory" disabled />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="After.AccountSubCategory"></label>
+                <input asp-for="After.AccountSubCategory" disabled />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="After.InitialBalance"></label>
+                <input asp-for="After.InitialBalance" disabled />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="After.Order"></label>
+                <input asp-for="After.Order" disabled />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="After.Statement"></label>
+                <select asp-for="After.Statement" asp-items="Html.GetEnumSelectList<AccountData.AccountStatement>()" disabled></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="After.NormalSide"></label> <br />
+                <input type="radio" asp-for="Side" value="@Model.Sides[0]" disabled />@Model.Sides[0]<br />
+                <input type="radio" asp-for="Side" value="@Model.Sides[1]" disabled />@Model.Sides[1]<br />
+            </div>
+
+            <div>
+                <input hidden asp-for="After.Balance" />
+                <input hidden asp-for="After.Credit" />
+                <input hidden asp-for="After.Debit" />
+                <input hidden asp-for="After.ID" />
+                <input hidden asp-for="After.TimeAccountAdded" />
+                <input hidden asp-for="After.Comment" />
+                <input hidden asp-for="After.NormalSide" />
+                <input hidden asp-for="After.AccountNumber" />
+                <input hidden asp-for="After.Active" />
+            </div>
+        </form>
+    </div>
 </div>
-
-<h1>ViewEventLogDetails</h1>
-<form method="get">
-    <div class="form-group">
-        <label asp-for="Account.AccountName"></label>
-        <input asp-for="Account.AccountName" disabled/>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Account.AccountDescription"></label>
-        <input asp-for="Account.AccountDescription" disabled/>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Account.AccountCategory"></label>
-        <input asp-for="Account.AccountCategory" disabled/>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Account.AccountSubCategory"></label>
-        <input asp-for="Account.AccountSubCategory" disabled/>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Account.InitialBalance"></label>
-        <input asp-for="Account.InitialBalance" disabled/>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Account.Order"></label>
-        <input asp-for="Account.Order" disabled/>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Account.Statement"></label>
-        <select asp-for="Account.Statement" asp-items="Html.GetEnumSelectList<AccountData.AccountStatement>()" disabled></select>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Account.NormalSide"></label> <br />
-        <input type="radio" asp-for="Side" value="@Model.Sides[0]" disabled/>@Model.Sides[0]<br />
-        <input type="radio" asp-for="Side" value="@Model.Sides[1]" disabled/>@Model.Sides[1]<br />
-    </div>
-
-    <div>
-        <input hidden asp-for="Account.Balance" />
-        <input hidden asp-for="Account.Credit" />
-        <input hidden asp-for="Account.Debit" />
-        <input hidden asp-for="Account.ID" />
-        <input hidden asp-for="Account.TimeAccountAdded" />
-        <input hidden asp-for="Account.Comment" />
-        <input hidden asp-for="Account.NormalSide" />
-        <input hidden asp-for="Account.AccountNumber" />
-        <input hidden asp-for="Account.Active" />
-    </div>
-</form>
 
 
 
