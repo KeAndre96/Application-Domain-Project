@@ -32,7 +32,7 @@ namespace AppDomainProject
                 FetchTransactions(journal.Value);
                 Transactions.Sort((a, b) =>
                 {
-                    return (a.Ammount - b.Ammount) < 0 ? 1: -1;
+                    return (a.Amount - b.Amount) < 0 ? 1: -1;
                 });
             }
             
@@ -82,7 +82,7 @@ namespace AppDomainProject
         public IActionResult OnPostSubmit(int journal)
         {
             double total = 0;
-            foreach(int a in (from t in _context.TransactionData where t.Journal == journal select t.Ammount))
+            foreach(int a in (from t in _context.TransactionData where t.Journal == journal select t.Amount))
             {
                 total += a;
             }
@@ -114,7 +114,7 @@ namespace AppDomainProject
             return new JournalEntry
             {
                 TransactionName = Transactions[i].Name,
-                Ammount = Transactions[i].Ammount,
+                Amount = Transactions[i].Amount,
                 Desc = Transactions[i].Description,
                 AccountName = (from m in _context.AccountData where m.AccountNumber == Transactions[i].AccountNumber select m.AccountName).FirstOrDefault()
             };
@@ -156,7 +156,7 @@ namespace AppDomainProject
         {
             public string AccountName { get; set; }
             public string TransactionName { get; set; }
-            public double Ammount { get; set; }
+            public double Amount { get; set; }
             public string Desc { get; set; }
         }
     }

@@ -29,7 +29,7 @@ namespace AppDomainProject
             var q = from t in _context.TransactionData where t.Journal == journal select t;
             foreach(TransactionData t in q)
             {
-                Total += t.Ammount;
+                Total += t.Amount;
             }
         }
     }

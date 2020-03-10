@@ -17,7 +17,7 @@ namespace AppDomainProject.Migrations
                     AccountNumber = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    Ammount = table.Column<double>(nullable: false),
+                    Amount = table.Column<double>(nullable: false),
                     TransactionDate = table.Column<DateTime>(nullable: false),
                     UserID = table.Column<string>(nullable: true)
                 },
