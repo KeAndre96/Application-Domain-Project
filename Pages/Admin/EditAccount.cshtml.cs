@@ -14,6 +14,7 @@ namespace AppDomainProject
 {
     public class EditAccountModel : AdminPageModel
     {
+        public EventLogData first = new EventLogData { };
         public EditAccountModel(AppDomainProjectContext context) : base(context)
         {
         }
@@ -23,13 +24,21 @@ namespace AppDomainProject
         [BindProperty]
         public string Side { get; set; }
         public string[] Sides = new string[] { "Credit", "Debit" };
-        public string before_image;
+        [BindProperty]
+        public string before_image { get; set; }
+        
+        public string test;
+        
         public IActionResult OnGet(string acct)
         {
             var query = from m in _context.AccountData select m;
             query = query.Where(n => n.AccountNumber.Equals(acct));
 
             Account = query.FirstOrDefault();
+
+            before_image = JsonConvert.SerializeObject(Account);
+        
+
             if (Account == null)
                 return NotFound();
             return Page();
@@ -37,15 +46,23 @@ namespace AppDomainProject
 
         public IActionResult OnPost()
         {
+
+            
+            //before_image = JsonConvert.SerializeObject();
+            //test = before_image;
+            //test = JsonConvert.SerializeObject(Account);
+
             if (!string.IsNullOrEmpty(Side))
             {
                 Account.NormalSide = Side.Equals(Sides[0]);
                 //sb.Append();
                 //EventLogData temp = new EventLogData { id=}
             }
+            
 
-            before_image = JsonConvert.SerializeObject(Account);
-
+            //temp.before_image = JsonConvert.SerializeObject(Account);
+            //_context.EventLogData.Add(temp);
+            ///before_image = JsonConvert.SerializeObject(Account);
             _context.Attach(Account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
             string columnName = "";
@@ -56,6 +73,7 @@ namespace AppDomainProject
                     columnName = e.Entity.ToString();
                 }
             }
+
             StringBuilder sb = new StringBuilder();
             //string id = UserInfo.ID;
             Random r = new Random();
@@ -65,6 +83,10 @@ namespace AppDomainProject
             {
                 DateTime localDate = DateTime.Now;
                 sb.Append(UserInfo.ID + " changed something in Chart of Accounts: " + localDate);
+                //temp.id = id;
+                //temp.log = sb.ToString();
+                //temp.before_image = before_image;
+                //temp.after_image = JsonConvert.SerializeObject(Account);
                 EventLogData temp = new EventLogData { id = id, log = sb.ToString(), before_image = before_image, after_image = JsonConvert.SerializeObject(Account) };
                 _context.EventLogData.Add(temp);
             }
@@ -78,6 +100,7 @@ namespace AppDomainProject
                 DateTime localDate = DateTime.Now;
                 sb.Append(UserInfo.ID + " changed something in Chart of Accounts: " + localDate);
                 EventLogData temp = new EventLogData { id = id, log = sb.ToString(), before_image = before_image, after_image = JsonConvert.SerializeObject(Account) };
+                
                 _context.EventLogData.Add(temp);
             }
             _context.SaveChanges();
