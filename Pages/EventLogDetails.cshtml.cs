@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace AppDomainProject
 {
    
-    public class ViewEventLogDetailsModel : AdminPageModel
+    public class ViewEventLogDetailsModel : AuthenticatedPageModel
     {
         public AccountData After { get; set; }
         public AccountData Before { get; set; }
