@@ -3,9 +3,7 @@
 @{
 	ViewData["Title"] = "Home page";
 }
-	<div class="text-left" style="width:25%;">
-		<img src="~/Images/Logo.PNG" style="margin:0 auto; width:100%" />
-	</div>
+	
 	<div class="text-left" style="width:50%">
 		<h1 class="display-4">Welcome</h1>
 		<form method="post">
@@ -19,16 +17,15 @@
 			</div>
 			<span style="display:inline-block; padding: 5px; text-align:center;margin-left:12%">
 				<span class="form-group">
-					<input type="submit" value="Log In" class="btn btn-primary" />
-					<input type="submit" value="Forgot Password" class="btn btn-primary" asp-page="ForgotPW" />
+					<input title=" Click to Login"type="submit" value="Log In" class="btn btn-primary" />
+					<input title="Click Here To Get Password Help" type="submit" value="Forgot Password" class="btn btn-primary" asp-page="ForgotPW" />
 				</span>
 				<span class="form-group">
-					<input type="submit" value="Create New User" class="btn btn-primary" asp-page="UserPersonalInformation" />
+					<input title=" Click to Create New Account" type="submit"  value="Create New User" class="btn btn-primary" asp-page="UserPersonalInformation" />
+					
 				</span>
 			</span>
-			<div align="right" valign="bottom">
-				<input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
-			</div>
+			
 		</form>
 	</div>
 

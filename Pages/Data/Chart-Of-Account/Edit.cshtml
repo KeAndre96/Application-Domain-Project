@@ -5,9 +5,7 @@
     ViewData["Title"] = "Edit";
 }
 
-    <div class="text-left">
-        <img src="~/Images/Logo.PNG" style="margin:0 auto; width:25%;" />
-    </div>
+
 <h1>Edit</h1>
 
 <h4>AccountData</h4>
@@ -97,9 +95,7 @@
 <div>
     <a asp-page="./Index">Back to List</a>
 </div>
-<div align="right" valign="bottom">
-    <input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

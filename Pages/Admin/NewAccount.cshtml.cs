@@ -40,6 +40,8 @@ namespace AppDomainProject
             _context.Attach(Account).State = Microsoft.EntityFrameworkCore.EntityState.Added;
             _context.SaveChanges();
 
+
+
             return Redirect("/User/Accounts");
         }
     }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppDomainProject.Migrations
 {
     [DbContext(typeof(AppDomainProjectContext))]
-    [Migration("20200225003824_journal")]
-    partial class journal
+    [Migration("20200304235107_added_to_eventlog")]
+    partial class added_to_eventlog
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,6 +76,25 @@ namespace AppDomainProject.Migrations
                     b.ToTable("AccountData");
                 });
 
+            modelBuilder.Entity("AppDomainProject.Models.EventLogData", b =>
+                {
+                    b.Property<string>("id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("after_image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("before_image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("log")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("EventLogData");
+                });
+
             modelBuilder.Entity("AppDomainProject.Models.JournalData", b =>
                 {
                     b.Property<int>("ID")
@@ -99,6 +118,9 @@ namespace AppDomainProject.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("Attempts")
+                        .HasColumnType("int");
+
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
@@ -109,6 +131,15 @@ namespace AppDomainProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityAnswer3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecurityQuestion1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecurityQuestion2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecurityQuestion3")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -148,7 +179,7 @@ namespace AppDomainProject.Migrations
                     b.Property<string>("AccountNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Amount")
+                    b.Property<double>("Ammount")
                         .HasColumnType("float");
 
                     b.Property<string>("Description")

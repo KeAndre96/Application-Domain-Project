@@ -74,6 +74,25 @@ namespace AppDomainProject.Migrations
                     b.ToTable("AccountData");
                 });
 
+            modelBuilder.Entity("AppDomainProject.Models.EventLogData", b =>
+                {
+                    b.Property<string>("id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("after_image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("before_image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("log")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("EventLogData");
+                });
+
             modelBuilder.Entity("AppDomainProject.Models.JournalData", b =>
                 {
                     b.Property<int>("ID")
@@ -158,7 +177,7 @@ namespace AppDomainProject.Migrations
                     b.Property<string>("AccountNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Ammount")
+                    b.Property<double>("Amount")
                         .HasColumnType("float");
 
                     b.Property<string>("Description")

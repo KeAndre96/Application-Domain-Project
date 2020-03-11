@@ -23,6 +23,7 @@ namespace AppDomainProject
         public async Task OnGetAsync()
         {
             EventLogData = await _context.EventLogData.ToListAsync();
+            
         }
 
         public async Task<IActionResult> OnPostDelete(string id)
@@ -40,6 +41,21 @@ namespace AppDomainProject
                 await _context.SaveChangesAsync();
             }
             return Redirect("./EventLog");
+        }
+        public async Task<IActionResult> OnPostView(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var EventLogData = await _context.EventLogData.ToListAsync();
+
+            return Redirect($"./EventLogDetails/{id}");
+        }
+        public IActionResult OnPost(string acct)
+        {
+            return Redirect($"./EventLog/{acct}");
         }
     }
 }

@@ -10,7 +10,7 @@
         <tr>
             <th>Account</th>
             <th>Transaction Name</th>
-            <th>Ammount</th>
+            <th>Amount</th>
             <th>Description</th>
             <th></th>
         </tr>
@@ -21,11 +21,11 @@
         <tr>
             <td>@line.AccountName</td>
             <td>@line.TransactionName</td>
-            <td>@line.Ammount</td>
+            <td>@line.Amount</td>
             <td>@line.Desc</td>
             <td>
                 <form method="post">
-                    <input type="submit" value="Delete" asp-page-handler="RemoveTransaction" asp-route-transaction="@Model.Transactions[i].ID" asp-route-journal="@Model.Journal"/>
+                    <input type="submit" value="Delete" title="click to  delete" asp-page-handler="RemoveTransaction" asp-route-transaction="@Model.Transactions[i].ID" asp-route-journal="@Model.Journal" />
                 </form>
             </td>
         </tr>
@@ -38,35 +38,37 @@
 <form method="post">
     <div class=" form-group">
         <label asp-for="NewTransaction.AccountNumber"></label>
-        <select asp-for="NewTransaction.AccountNumber" asp-items="Model.GetAccounts()"></select>
+        <select asp-for="NewTransaction.AccountNumber" asp-items="Model.GetAccounts()" title=" Select Account Number"></select>
     </div>
     <div class="form-group">
-        <label asp-for="NewTransaction.Ammount"></label>
-        <input asp-for="NewTransaction.Ammount" />
+        <label asp-for="NewTransaction.Amount"></label>
+        <input asp-for="NewTransaction.Amount" title="Enter Amount " />
     </div>
     <div class="form-group">
         <label asp-for="NewTransaction.Name"></label>
-        <input asp-for="NewTransaction.Name" />
+        <input asp-for="NewTransaction.Name" title="Enter Transaction Name" />
     </div>
     <div class="form-group">
         <label asp-for="NewTransaction.Description"></label>
-        <input asp-for="NewTransaction.Description" />
+        <input asp-for="NewTransaction.Description" title="Enter Description " />
     </div>
     <div class="form-group">
         <label asp-for="NewTransaction.TransactionDate"></label>
-        <input asp-for="NewTransaction.TransactionDate" />
+        <input asp-for="NewTransaction.TransactionDate" title="Enter today's date " />
     </div>
 
-    <input type="submit" value="Add" asp-page-handler="AddTransaction" asp-route-journal="@Model.Journal"/>
+    <input type="submit" value="Add" title="click to add" asp-page-handler="AddTransaction" asp-route-journal="@Model.Journal" />
 
     <input hidden asp-for="NewTransaction.ID" />
     <input hidden asp-for="NewTransaction.Journal" />
 </form>
 
-@if(Model.Journal != null)
+@if (Model.Journal != null)
 {
     <h2>Submit Journal</h2>
     <form method="post">
-        <input type="submit" value="Submit" asp-page-handler="Submit" asp-route-journal="@Model.Journal.Value" />
+        <input type="submit" title="click submit" value="Submit" asp-page-handler="Submit" asp-route-journal="@Model.Journal.Value" />
     </form>
 }
+<br />
+<a href="/User/Journals">Back </a>

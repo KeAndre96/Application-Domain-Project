@@ -22,40 +22,44 @@
      -->
         <div class="form-group">
             <label asp-for="FirstName" class="control-label"></label>
-            <input asp-for="FirstName" class="control-label" />
+            <input asp-for="FirstName" class="control-label" title="Enter your First name" />
             <!--span asp-validation-for="FirstName" class="text-danger"></!--span-->
         </div>
         <div class="form-group">
             <label asp-for="LastName" class="control-label"></label>
-            <input asp-for="LastName" class="control-label" />
+            <input asp-for="LastName" class="control-label" title=" Enter your Last Name" />
             <!--span asp-validation-for="LastName" class="text-danger"></!--span-->
         </div>
         <div class="form-group">
             <label asp-for="DOB" class="control-label"></label>
-            <input asp-for="DOB" class="control-label" />
+            <input asp-for="DOB" class="control-label" title=" Enter your Date of Birth" />
             <!--span asp-validation-for="DOB" class="text-danger"></!--span-->
         </div>
         <div class="form-group">
             <label asp-for="Address" class="control-label"></label>
-            <input asp-for="Address" class="control-label" />
+            <input asp-for="Address" class="control-label" title="Enter your Address " />
             <!--span asp-validation-for="Address" class="text-danger"></!--span-->
         </div>
         <div class="form-group">
             <label asp-for="Email" class="control-label"></label>
-            <input asp-for="Email" class="control-label" />
+            <input asp-for="Email" class="control-label" title="Enter your Email" />
             <!--span asp-validation-for="Email" class="text-danger"></!--span-->
         </div>
         <div class="form-group">
             <label asp-for="Password" class="control-label"></label>
-            <input asp-for="Password" class="control-label" />
+            <input asp-for="Password" class="control-label" title=" Password must be 8 characters. It must start with a letter. It must contain a lower
+                   case letter, a uppercase letter, a number, and a special character" />
             <!--span asp-validation-for="Password" class="text-danger"></!--span-->
         </div>
+        <p>
+            By submitting this form you are submmiting a request to one of our adminitrators to create a new account. In order to continue an admintrator must
+            activate your new account. You will receive an email to the email provided when your acoount is ready to use.
+        </p>
         <div class="form-group">
-            <button asp-page-handler="Send" class="btn btn-primary">Send</button>
+            <button asp-page-handler="Send" class="btn btn-primary" title="Click to Submit">Send</button>
         </div>
-        <div align="right" valign="bottom">
-            <input type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
-        </div>
+        
+       
     </form>
 </div>
 

@@ -160,7 +160,7 @@ namespace AppDomainProject.Migrations
                     b.Property<string>("AccountNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Ammount")
+                    b.Property<double>("Amount")
                         .HasColumnType("float");
 
                     b.Property<string>("Description")

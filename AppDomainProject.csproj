@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200221150433_transaction_initial.cs" />
     <Compile Remove="Migrations\20200221150433_transaction_initial.Designer.cs" />
+    <Compile Remove="Migrations\20200309230938_evn.cs" />
+    <Compile Remove="Migrations\20200309230938_evn.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +27,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
 </Project>
