@@ -46,23 +46,12 @@ namespace AppDomainProject
 
         public IActionResult OnPost()
         {
-
-            
-            //before_image = JsonConvert.SerializeObject();
-            //test = before_image;
-            //test = JsonConvert.SerializeObject(Account);
-
             if (!string.IsNullOrEmpty(Side))
             {
                 Account.NormalSide = Side.Equals(Sides[0]);
                 //sb.Append();
                 //EventLogData temp = new EventLogData { id=}
             }
-            
-
-            //temp.before_image = JsonConvert.SerializeObject(Account);
-            //_context.EventLogData.Add(temp);
-            ///before_image = JsonConvert.SerializeObject(Account);
             _context.Attach(Account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
             string columnName = "";
@@ -75,7 +64,6 @@ namespace AppDomainProject
             }
 
             StringBuilder sb = new StringBuilder();
-            //string id = UserInfo.ID;
             Random r = new Random();
             string id = r.Next().ToString();
             var ans = _context.EventLogData.Find(id);
@@ -83,10 +71,6 @@ namespace AppDomainProject
             {
                 DateTime localDate = DateTime.Now;
                 sb.Append(UserInfo.ID + " changed something in Chart of Accounts: " + localDate);
-                //temp.id = id;
-                //temp.log = sb.ToString();
-                //temp.before_image = before_image;
-                //temp.after_image = JsonConvert.SerializeObject(Account);
                 EventLogData temp = new EventLogData { id = id, log = sb.ToString(), before_image = before_image, after_image = JsonConvert.SerializeObject(Account) };
                 _context.EventLogData.Add(temp);
             }

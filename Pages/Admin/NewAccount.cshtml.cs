@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AppDomainProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 
 namespace AppDomainProject
 {
@@ -38,6 +40,32 @@ namespace AppDomainProject
             Account.Active = true;
 
             _context.Attach(Account).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+            _context.SaveChanges();
+
+            StringBuilder sb = new StringBuilder();
+            Random r = new Random();
+            string id = r.Next().ToString();
+            var ans = _context.EventLogData.Find(id);
+            if (ans == null)
+            {
+                DateTime localDate = DateTime.Now;
+                sb.Append(UserInfo.ID + " changed added to Chart Accounts: " + localDate);
+                EventLogData temp = new EventLogData { id = id, log = sb.ToString(), before_image = "", after_image = JsonConvert.SerializeObject(Account) };
+                _context.EventLogData.Add(temp);
+            }
+            else
+            {
+                while (ans != null)
+                {
+                    id = r.Next().ToString();
+                    ans = _context.EventLogData.Find(id);
+                }
+                DateTime localDate = DateTime.Now;
+                sb.Append(UserInfo.ID + " added to Chart of Accounts: " + localDate);
+                EventLogData temp = new EventLogData { id = id, log = sb.ToString(), before_image = "", after_image = JsonConvert.SerializeObject(Account) };
+
+                _context.EventLogData.Add(temp);
+            }
             _context.SaveChanges();
 
 
