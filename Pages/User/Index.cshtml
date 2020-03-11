@@ -3,13 +3,14 @@
 @{
 	ViewData["Title"] = "Dashboard";
 }
-<div class="text-left">
-	<img src="~/Images/Logo.PNG" style="margin:0 auto; width:25%;" />
-</div>
+
 <h1>Welcome, @Model.Name</h1>
 <h2>@Model.Username</h2>
 
 <a asp-page="/User/Accounts">Financial Accounts</a>
 <br />
 <a asp-page="/User/Journals">Journals</a>
+<br />
+<br>
+<a asp-page="/EventLog">View Event Log</a>
 <br />
