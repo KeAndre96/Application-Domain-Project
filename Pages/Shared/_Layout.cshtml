@@ -6,40 +6,49 @@
     <title>@ViewData["Title"] - AppDomainProject</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
-        $(function () {
-          $('#datetimepicker').datetimepicker({
-            ignoreReadonly: true
-          });
-        });
-     </script>
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker.css"/>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/bootstrap-datepicker.min.js"></script>
+
+   
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <div class="navbar-brand" asp-area="" asp-page="/Index">
-                    <a><img src="~/Images/Logo.PNG" style="margin:0 auto; width:18%" /></a>
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="datepicker-dropdown" style="width:25%; margin-right:10px">
-                            <input type="text" class="form-control" readonly>
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/User/Accounts">Accounts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Dashboard">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Logout">Logout</a>
-                        </li>
-                    </ul>
+            <div class="navbar-brand" asp-area="" asp-page="/Index">
+                <div class="container">
+                    <div class="row">
+                        <div>
+                            <a><img src="~/Images/Logo.PNG" style="margin:0 auto; height:80px" /></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li>
+                                <div class="input-group date" data-provide="datepicker">
+                                    <input type="text" id="datepicker" class="form-control" value="">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/User/Accounts">Accounts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Logout">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -56,9 +65,22 @@
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
+        $(function () {
+            var date = new Date();
+            var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            $('#datepicker').datepicker('setValue', today);
+            $('#datepicker').datepicker({
+                orientation: "bottom auto",
+                ignoreReadonly: true,
+                defaultDate: "0d",
+                format: "mm/dd/yyyy",
+                autoclose: true,
+                todayHighlight: true,
+                todayBtn: true,
+            });
+        });
+    </script>
 
     @RenderSection("Scripts", required: false)
     <div align="right" valign="bottom">
