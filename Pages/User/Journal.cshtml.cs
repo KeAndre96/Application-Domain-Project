@@ -24,8 +24,18 @@ namespace AppDomainProject
         [BindProperty]
         public int? Journal { get; set; }
 
-        public void OnGet(int? journal)
+        public List<JournalData> Journals { get; set; }
+
+        public void OnGet(int? journal, string? searchString)
         {
+            var query = from m in _context.JournalData select m;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                query = query.Where(s => s.usetID.Contains(searchString));
+            }
+            //query = query.Where(n => n.Active);
+            Journals = query.ToList();
+
             Transactions = new List<TransactionData>();
             if(journal != null)
             {

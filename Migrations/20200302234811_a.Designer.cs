@@ -4,14 +4,16 @@ using AppDomainProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AppDomainProject.Migrations
 {
     [DbContext(typeof(AppDomainProjectContext))]
-    partial class AppDomainProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20200302234811_a")]
+    partial class a
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,12 +80,6 @@ namespace AppDomainProject.Migrations
                 {
                     b.Property<string>("id")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("after_image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("before_image")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("log")
                         .HasColumnType("nvarchar(max)");
@@ -177,7 +173,7 @@ namespace AppDomainProject.Migrations
                     b.Property<string>("AccountNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Amount")
+                    b.Property<double>("Ammount")
                         .HasColumnType("float");
 
                     b.Property<string>("Description")
