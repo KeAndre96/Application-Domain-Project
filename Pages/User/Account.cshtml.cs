@@ -57,13 +57,13 @@ namespace AppDomainProject
             Account.Balance = Account.TimeAccountAdded >= trueBegin ? Account.InitialBalance : 0;
             foreach (TransactionData t in allTransactions)
             {
-                Account.Balance += t.Ammount;
+                Account.Balance += t.Amount;
             }
 
             Cashflow = 0;
             foreach(TransactionData t in AccountTransactions)
             {
-                Cashflow += t.Ammount;
+                Cashflow += t.Amount;
             }
 
             TransactionStartDate = begin.HasValue ? begin.Value : Account.TimeAccountAdded;
