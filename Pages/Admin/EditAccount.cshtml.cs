@@ -114,3 +114,5 @@ namespace AppDomainProject
         }
     }
 }
+//json format for account data
+///"{\"AccountNumber\":\"\",\"AccountName\":\"\",\"AccountDescription\":\"\",\"NormalSide\":true,\"AccountCategory\":\"\",\"AccountSubCategory\":\"\",\"InitialBalance\":0.0,\"Debit\":0.0,\"Credit\":0.0,\"Balance\":0.0,\"TimeAccountAdded\":\"0000-00-00T00:00:00\",\"ID\":\"\",\"Order\":1,\"Statement\":0,\"Comment\":null,\"Active\":true}"
