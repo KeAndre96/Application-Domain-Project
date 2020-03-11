@@ -128,6 +128,7 @@ namespace AppDomainProject.Pages.User
             }
         }
 
+
         public class JournalEntry
         {
             public string AccountName { get; set; }
