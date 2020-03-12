@@ -20,7 +20,10 @@ namespace AppDomainProject.Models
         public string Description { get; set; }
 
         [DataType(DataType.Currency)]
-        public double Amount { get; set; }
+        public double Debits { get; set; }
+
+        [DataType(DataType.Currency)]
+        public double Credits { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime TransactionDate { get; set; }

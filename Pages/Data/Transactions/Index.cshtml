@@ -26,7 +26,10 @@
                 @Html.DisplayNameFor(model => model.TransactionData[0].Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TransactionData[0].Amount)
+                @Html.DisplayNameFor(model => model.TransactionData[0].Debits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionData[0].Credits)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TransactionData[0].TransactionDate)
@@ -50,7 +53,10 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Amount)
+                @Html.DisplayFor(modelItem => item.Debits)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credits)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TransactionDate)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using AppDomainProject.Models;
@@ -42,7 +43,7 @@ namespace AppDomainProject
                 FetchTransactions(journal.Value);
                 Transactions.Sort((a, b) =>
                 {
-                    return (a.Amount - b.Amount) < 0 ? 1: -1;
+                    return ((a.Credits - a.Debits) - (b.Credits - b.Debits)) < 0 ? 1 : -1;
                 });
             }
             
@@ -92,9 +93,10 @@ namespace AppDomainProject
         public IActionResult OnPostSubmit(int journal)
         {
             double total = 0;
-            foreach(int a in (from t in _context.TransactionData where t.Journal == journal select t.Amount))
+            foreach(var t in (from t in _context.TransactionData where t.Journal == journal select new { c = t.Credits, d = t.Debits }))
             {
-                total += a;
+                total += t.c;
+                total -= t.d;
             }
             if(total != 0)
             {
@@ -124,9 +126,11 @@ namespace AppDomainProject
             return new JournalEntry
             {
                 TransactionName = Transactions[i].Name,
-                Amount = Transactions[i].Amount,
+                Credit = Transactions[i].Credits,
+                Debit = Transactions[i].Debits,
                 Desc = Transactions[i].Description,
-                AccountName = (from m in _context.AccountData where m.AccountNumber == Transactions[i].AccountNumber select m.AccountName).FirstOrDefault()
+                AccountName = (from m in _context.AccountData where m.AccountNumber == Transactions[i].AccountNumber select m.AccountName).FirstOrDefault(),
+                Date = Transactions[i].TransactionDate
             };
         }
 
@@ -166,8 +170,11 @@ namespace AppDomainProject
         {
             public string AccountName { get; set; }
             public string TransactionName { get; set; }
-            public double Amount { get; set; }
+            public double Debit { get; set; }
+            public double Credit { get; set; }
             public string Desc { get; set; }
+            [DataType(DataType.Date)]
+            public DateTime Date { get; set; }
         }
     }
 }

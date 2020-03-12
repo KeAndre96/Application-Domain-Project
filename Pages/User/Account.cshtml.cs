@@ -29,10 +29,6 @@ namespace AppDomainProject
         [BindProperty]
         public DateTime TransactionEndDate { get; set; }
 
-        [DataType(DataType.Currency)]
-        [BindProperty]
-        public double Cashflow { get; set; }
-
         [BindProperty]
         public string acct { get; set; }
 
@@ -57,13 +53,16 @@ namespace AppDomainProject
             Account.Balance = Account.TimeAccountAdded >= trueBegin ? Account.InitialBalance : 0;
             foreach (TransactionData t in allTransactions)
             {
-                Account.Balance += t.Amount;
-            }
-
-            Cashflow = 0;
-            foreach(TransactionData t in AccountTransactions)
-            {
-                Cashflow += t.Amount;
+                if (Account.NormalSide)
+                {
+                    Account.Balance += t.Credits;
+                    Account.Balance -= t.Debits;
+                }
+                else
+                {
+                    Account.Balance -= t.Credits;
+                    Account.Balance += t.Debits;
+                }
             }
 
             TransactionStartDate = begin.HasValue ? begin.Value : Account.TimeAccountAdded;
@@ -101,7 +100,7 @@ namespace AppDomainProject
 
         private List<TransactionData> GetTransactions(DateTime start, DateTime end)
         {
-            var q = from t in _context.TransactionData join j in _context.JournalData on t.Journal equals j.ID where j.JournalStatus == JournalData.Status.approved select t;
+            var q = from t in _context.TransactionData join j in _context.JournalData on t.Journal equals j.ID where j.JournalStatus == JournalData.Status.approved where t.AccountNumber == Account.AccountNumber select t;
             q = q.Where(t => t.TransactionDate >= start);
             q = q.Where(t => t.TransactionDate <= end);
             List<TransactionData> list = q.ToList();

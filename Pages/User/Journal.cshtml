@@ -10,8 +10,10 @@
         <tr>
             <th>Account</th>
             <th>Transaction Name</th>
-            <th>Amount</th>
+            <th>Debits</th>
+            <th>Credits</th>
             <th>Description</th>
+            <th>Date</th>
             <th></th>
         </tr>
     </thead>
@@ -21,8 +23,10 @@
         <tr>
             <td>@line.AccountName</td>
             <td>@line.TransactionName</td>
-            <td>@line.Amount</td>
+            <td>@line.Debit</td>
+            <td>@line.Credit</td>
             <td>@line.Desc</td>
+            <th>@line.Date</th>
             <td>
                 <form method="post">
                     <input type="submit" value="Delete" title="click to  delete" asp-page-handler="RemoveTransaction" asp-route-transaction="@Model.Transactions[i].ID" asp-route-journal="@Model.Journal" />
@@ -36,26 +40,26 @@
 <h2>New Entry</h2>
 
 <form method="post">
-    <div class=" form-group">
-        <label asp-for="NewTransaction.AccountNumber"></label>
-        <select asp-for="NewTransaction.AccountNumber" asp-items="Model.GetAccounts()" title=" Select Account Number"></select>
-    </div>
-    <div class="form-group">
-        <label asp-for="NewTransaction.Amount"></label>
-        <input asp-for="NewTransaction.Amount" title="Enter Amount " />
-    </div>
-    <div class="form-group">
-        <label asp-for="NewTransaction.Name"></label>
-        <input asp-for="NewTransaction.Name" title="Enter Transaction Name" />
-    </div>
-    <div class="form-group">
-        <label asp-for="NewTransaction.Description"></label>
-        <input asp-for="NewTransaction.Description" title="Enter Description " />
-    </div>
-    <div class="form-group">
-        <label asp-for="NewTransaction.TransactionDate"></label>
-        <input asp-for="NewTransaction.TransactionDate" title="Enter today's date " />
-    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><label asp-for="NewTransaction.AccountNumber"></label></th>
+                <th><label asp-for="NewTransaction.Name"></label></th>
+                <th><label asp-for="NewTransaction.Debits"></label></th>
+                <th><label asp-for="NewTransaction.Credits"></label></th>
+                <th><label asp-for="NewTransaction.Description"></label></th>
+                <th><label asp-for="NewTransaction.TransactionDate"></label></th>
+            </tr>
+        </thead>
+        <tr>
+            <td><select asp-for="NewTransaction.AccountNumber" asp-items="Model.GetAccounts()" title="Select Account Number"></select></td>
+            <td><input asp-for="NewTransaction.Name" title="Enter Transaction Name" /></td>
+            <td><input asp-for="NewTransaction.Debits" title="Enter Debits" /></td>
+            <td><input asp-for="NewTransaction.Credits" title="Enter Credits" /></td>
+            <td><input asp-for="NewTransaction.Description" title="Enter Description" /></td>
+            <td><input asp-for="NewTransaction.TransactionDate" title="Enter Transaction Date" /></td>
+        </tr>
+    </table>
 
     <input type="submit" value="Add" title="click to add" asp-page-handler="AddTransaction" asp-route-journal="@Model.Journal" />
 

@@ -35,9 +35,14 @@
                 <span asp-validation-for="TransactionData.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TransactionData.Amount" class="control-label"></label>
-                <input asp-for="TransactionData.Amount" class="form-control" />
-                <span asp-validation-for="TransactionData.Amount" class="text-danger"></span>
+                <label asp-for="TransactionData.Debits" class="control-label"></label>
+                <input asp-for="TransactionData.Debits" class="form-control" />
+                <span asp-validation-for="TransactionData.Debits" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionData.Credits" class="control-label"></label>
+                <input asp-for="TransactionData.Credits" class="form-control" />
+                <span asp-validation-for="TransactionData.Credits" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TransactionData.TransactionDate" class="control-label"></label>

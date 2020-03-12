@@ -20,13 +20,14 @@
 
     <input hidden asp-for="acct" />
 </form>
-<p>Total Cashflow: @Model.Cashflow</p>
+<p>Total Cashflow: </p>
 <table class="table">
     <thead>
         <tr>
             <th>Date</th>
-            <th>Amount</th>
             <th>Title</th>
+            <th>Credit</th>
+            <th>Debit</th>
             <th>Description</th>
             <th>Journal</th>
         </tr>
@@ -35,8 +36,9 @@
 	{
         <tr>
             <td>@t.TransactionDate</td>
-            <td>@t.Amount</td>
             <td>@t.Name</td>
+            <td>@t.Credits</td>
+            <td>@t.Debits</td>
             <td>@t.Description</td>
             <td><a href="../ViewJournal/@t.Journal">@t.Journal</a></td>
         </tr>

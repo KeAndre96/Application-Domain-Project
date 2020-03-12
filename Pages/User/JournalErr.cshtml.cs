@@ -17,7 +17,11 @@ namespace AppDomainProject
 
         [BindProperty]
         [DataType(DataType.Currency)]
-        public double Total { get; set; }
+        public double Credits { get; set; }
+
+        [BindProperty]
+        [DataType(DataType.Currency)]
+        public double Debits { get; set; }
 
         [BindProperty]
         public int Journal { get; set; }
@@ -25,11 +29,13 @@ namespace AppDomainProject
         public void OnGet(int journal)
         {
             Journal = journal;
-            Total = 0;
+            Credits = 0;
+            Debits = 0;
             var q = from t in _context.TransactionData where t.Journal == journal select t;
             foreach(TransactionData t in q)
             {
-                Total += t.Amount;
+                Credits += t.Credits;
+                Debits += t.Debits;
             }
         }
     }

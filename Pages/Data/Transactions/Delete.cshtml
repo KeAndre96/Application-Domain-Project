@@ -37,10 +37,16 @@
             @Html.DisplayFor(model => model.TransactionData.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TransactionData.Amount)
+            @Html.DisplayNameFor(model => model.TransactionData.Debits)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TransactionData.Amount)
+            @Html.DisplayFor(model => model.TransactionData.Debits)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TransactionData.Credits)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TransactionData.Credits)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.TransactionData.TransactionDate)
