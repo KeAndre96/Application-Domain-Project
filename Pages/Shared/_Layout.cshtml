@@ -63,28 +63,33 @@
         <div class="container">
             &copy; 2020 - AppDomainProject
         </div>
+        
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
-        $(function () {
-            var date = new Date();
-            var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-            $('#datepicker').datepicker('setValue', today);
-            $('#datepicker').datepicker({
-                orientation: "bottom auto",
-                ignoreReadonly: true,
-                defaultDate: "0d",
-                format: "mm/dd/yyyy",
-                autoclose: true,
-                todayHighlight: true,
-                todayBtn: true,
-            });
-        });
-    </script>
-
-    @RenderSection("Scripts", required: false)
     <div align="right" valign="bottom">
-        <input type="submit" title="Click here to get help" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
+        <li class="nav-item">
+            <a class="btn btn-danger" title="Click here to get help" asp-area="" asp-page="/HelpPages/Help">Help</a>
+        </li>
     </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
+            $(function () {
+                var date = new Date();
+                var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                $('#datepicker').datepicker('setValue', today);
+                $('#datepicker').datepicker({
+                    orientation: "bottom auto",
+                    ignoreReadonly: true,
+                    defaultDate: "0d",
+                    format: "mm/dd/yyyy",
+                    autoclose: true,
+                    todayHighlight: true,
+                    todayBtn: true,
+                });
+            });
+        </script>
+
+        @RenderSection("Scripts", required: false)
+
 </body>
 </html>
