@@ -6,17 +6,7 @@
 
 <h1>Journal</h1>
 <table class="table">
-    <thead>
-        <tr>
-            <th>Account</th>
-            <th>Transaction Name</th>
-            <th>Debits</th>
-            <th>Credits</th>
-            <th>Description</th>
-            <th>Date</th>
-            <th></th>
-        </tr>
-    </thead>
+    
     @for (int i = 0; i < Model.Transactions.Count; i++)
     {
         var line = Model.JournalLine(i);
@@ -75,4 +65,4 @@
     </form>
 }
 <br />
-<a href="/User/Journals">Back </a>
+<a href="/User/Journals">Back  </a>
