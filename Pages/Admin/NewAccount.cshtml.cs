@@ -49,7 +49,7 @@ namespace AppDomainProject
             if (ans == null)
             {
                 DateTime localDate = DateTime.Now;
-                sb.Append(UserInfo.ID + " changed added to Chart Accounts: " + localDate);
+                sb.Append(UserInfo.ID + " added a new Account to Chart Accounts: " + localDate);
                 EventLogData temp = new EventLogData { id = id, log = sb.ToString(), before_image = "", after_image = JsonConvert.SerializeObject(Account) };
                 _context.EventLogData.Add(temp);
             }
@@ -61,7 +61,7 @@ namespace AppDomainProject
                     ans = _context.EventLogData.Find(id);
                 }
                 DateTime localDate = DateTime.Now;
-                sb.Append(UserInfo.ID + " added to Chart of Accounts: " + localDate);
+                sb.Append(UserInfo.ID + " added a new Account to Chart of Accounts: " + localDate);
                 EventLogData temp = new EventLogData { id = id, log = sb.ToString(), before_image = "", after_image = JsonConvert.SerializeObject(Account) };
 
                 _context.EventLogData.Add(temp);

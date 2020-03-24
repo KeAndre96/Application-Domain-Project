@@ -67,3 +67,27 @@
 	</form>
 
 </div>
+<h2 class="display-4">Expired Passwords</h2>
+<table>
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Users.FirstOrDefault().ID)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Users.FirstOrDefault().PasswordExpirationDate)
+			</th>
+		</tr>
+	</thead>
+	@foreach (UserInfoData u in Model.PasswordList)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => u.ID)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => u.PasswordExpirationDate)
+			</td>
+		</tr>
+	}
+</table>
