@@ -7,9 +7,19 @@
 <h1>Welcome, @Model.Name</h1>
 <h2>@Model.Username</h2>
 
-<a asp-page="/User/Accounts"><img src="~/Images/Account.png" style="margin:0 auto; height:20px" />Financial Accounts</a>
-<br />
-<a asp-page="/User/Journals"><img src="~/Images/Journal.png" style="margin:0 auto; height:20px" />Journals</a>
-<br />
-<a asp-page="/EventLog"><img src="~/Images/Event.png" style="margin:0 auto; height:20px" />View Event Log</a>
-<br />
+<div class="col-6">
+	<a asp-page="/User/Accounts"><img src="~/Images/Account.png" style="margin:0 auto; height:20px" />Financial Accounts</a>
+	<br />
+	<a asp-page="/User/Journals"><img src="~/Images/Journal.png" style="margin:0 auto; height:20px" />Journals</a>
+	<br />
+	<a asp-page="/EventLog"><img src="~/Images/Event.png" style="margin:0 auto; height:20px" />View Event Log</a>
+	<br />
+</div>
+<div class="col-6">
+	<div class="dataBox" style="box-shadow:inset 0px 0px 50px #36bff5; width:auto; padding:3px; border-radius:5px; text-align:center; display:inline-grid; margin:5px;">
+		<p>Data of whatever here</p>
+	</div>
+	<div class="dataBox" style="box-shadow:inset 0px 0px 50px #36bff5; width:auto; padding:3px; border-radius:5px; text-align:center; display:inline-grid; margin:5px;">
+		<p>Data of whatever here</p>
+	</div>
+</div>
