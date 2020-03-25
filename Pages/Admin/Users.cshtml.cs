@@ -22,12 +22,17 @@ namespace AppDomainProject.Pages.Admin
 
         [BindProperty]
         public List<UserInfoData> Users { get; set; }
-
+        [BindProperty]
+        public List<UserInfoData> PasswordList { get; set; }
         public void OnGet()
         {
             var query = from u in _context.UserInfoData select u;
             
             Users = query.ToList();
+
+            var query2 = from u in _context.UserInfoData select u;
+            query2 = query2.Where(n => n.PasswordExpirationDate <= DateTime.Now);
+            PasswordList = query2.ToList();
         }
 
         public IActionResult OnPostAcctToggle(string id, int status)
