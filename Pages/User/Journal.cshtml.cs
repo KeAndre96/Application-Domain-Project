@@ -121,6 +121,22 @@ namespace AppDomainProject
             }
         }
 
+        public IActionResult OnPostDelete(int journal)
+        {
+            //Remove all transactions
+            foreach(TransactionData t in (from t in _context.TransactionData where t.Journal == journal select t))
+            {
+                _context.Attach(t).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            }
+            //Remove Journal
+            JournalData j = (from m in _context.JournalData where m.ID == journal select m).FirstOrDefault();
+            _context.Attach(j).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+
+            _context.SaveChanges();
+
+            return Redirect("./Journals");
+        }
+
         public JournalEntry JournalLine(int i)
         {
             return new JournalEntry

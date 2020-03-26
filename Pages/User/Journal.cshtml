@@ -6,7 +6,16 @@
 
 <h1>Journal</h1>
 <table class="table">
-    
+    <thead>
+        <tr>
+            <th>Account</th>
+            <th>Name</th>
+            <th>Debit</th>
+            <th>Credit</th>
+            <th>Description</th>
+            <th>Date</th>
+        </tr>
+    </thead>
     @for (int i = 0; i < Model.Transactions.Count; i++)
     {
         var line = Model.JournalLine(i);
@@ -16,7 +25,7 @@
             <td>@line.Debit</td>
             <td>@line.Credit</td>
             <td>@line.Desc</td>
-            <th>@line.Date</th>
+            <td>@line.Date</td>
             <td>
                 <form method="post">
                     <input type="submit" value="Delete" title="click to  delete" asp-page-handler="RemoveTransaction" asp-route-transaction="@Model.Transactions[i].ID" asp-route-journal="@Model.Journal" />
@@ -51,7 +60,7 @@
         </tr>
     </table>
 
-    <input type="submit" value="Add" title="click to add" asp-page-handler="AddTransaction" asp-route-journal="@Model.Journal" />
+    <input type="submit" value="Add Transaction" title="click to add" asp-page-handler="AddTransaction" asp-route-journal="@Model.Journal" />
 
     <input hidden asp-for="NewTransaction.ID" />
     <input hidden asp-for="NewTransaction.Journal" />
@@ -63,6 +72,14 @@
     <form method="post">
         <input type="submit" title="click submit" value="Submit" asp-page-handler="Submit" asp-route-journal="@Model.Journal.Value" />
     </form>
+
+    <br />
+
+    <form method="post">
+        <input type="submit" title="click to delete" value="Delete" asp-page-handler="Delete" asp-route-journal="@Model.Journal.Value" class="btn btn-danger" />
+    </form>
 }
+
+
 <br />
 <a href="/User/Journals">Back  </a>
