@@ -7,3 +7,9 @@
 <h1>DBSetup</h1>
 
 <p>@Model.Message</p>
+<br />
+<h2>Defaults</h2>
+@foreach(string s in Model.Defaults)
+{
+    @Html.Raw(s);
+}

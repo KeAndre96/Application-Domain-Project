@@ -15,16 +15,19 @@ namespace AppDomainProject
 
         [BindProperty]
         public string Message { get; set; }
+        [BindProperty]
+        public List<string> Defaults { get; set; }
 
         public DBSetupModel(AppDomainProjectContext context)
         {
             _context = context;
         }
 
-        public void OnGet()
+        public void OnGet(bool? force)
         {
+            Defaults = new List<string>();
             var q = from m in _context.AccountData select m;
-            if(q.FirstOrDefault() == null || true) //Database is not set up, it needs to be done
+            if(q.FirstOrDefault() == null || (force != null && force.Value)) //Database is not set up, it needs to be done
             {
                 Setup();
                 Message = "Data initialized!";
@@ -79,6 +82,9 @@ namespace AppDomainProject
                 SecurityAnswer3 = "Answer"
             };
             Add(adminPass, adminPass.ID);
+            Defaults.Add("<b>Admin</b><br>");
+            Defaults.Add("ID: bs0120<br>");
+            Defaults.Add("Password: Password<br>");
 
             //Manager Account
             UserInfoData managerInfo = new UserInfoData
@@ -113,6 +119,9 @@ namespace AppDomainProject
                 SecurityAnswer3 = "Answer"
             };
             Add(managerPass, managerPass.ID);
+            Defaults.Add("<b>Manager</b><br>");
+            Defaults.Add("ID: sg0120<br>");
+            Defaults.Add("Password: Password<br>");
 
             //User Account
             UserInfoData userInfo = new UserInfoData
@@ -147,6 +156,9 @@ namespace AppDomainProject
                 SecurityAnswer3 = "Answer"
             };
             Add(userPass, userPass.ID);
+            Defaults.Add("<b>Accountant</b><br>");
+            Defaults.Add("ID: jj0120<br>");
+            Defaults.Add("Password: Password<br>");
 
             _context.SaveChanges();
         }
