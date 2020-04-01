@@ -1,0 +1,14 @@
+﻿@page
+@model AppDomainProject.TrialBalenceModel
+@{
+    ViewData["Title"] = "TrialBalence";
+}
+
+<h1>TrialBalence</h1>
+<form method="post">
+    <label>Start Date</label>
+    <input asp-for="TransactionStartDate" />
+    <label>End Date</label>
+    <input asp-for="TransactionEndDate" />
+    <input type="submit" value="Generate" />
+</form>
