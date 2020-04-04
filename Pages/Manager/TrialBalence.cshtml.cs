@@ -21,5 +21,17 @@ namespace AppDomainProject
         {
 
         }
+        public async Task<IActionResult> OnPost(DateTime TransactionStartDate, DateTime TransactionEndDate)
+        {
+            if (TransactionStartDate == null || TransactionEndDate == null)
+            {
+                return NotFound();
+            }
+
+            //var EventLogData = await _context.EventLogData.ToListAsync();
+
+            //return Redirect($"./View_Trial_Balence/{TransactionStartDate}{TransactionEndDate}");
+            return Redirect("./View_Trial_Balence");
+        }
     }
 }

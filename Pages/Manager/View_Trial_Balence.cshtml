@@ -1,0 +1,17 @@
+﻿@page
+@model AppDomainProject.View_Trial_BalenceModel
+@{
+    ViewData["Title"] = "View_Trial_Balence";
+}
+
+<h1>View Trial Balence</h1>
+<form method="get">
+    <div class="form-group">
+        <label asp-for="total_credit_balence"></label>
+        <input asp-for="total_credit_balence" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="total_debit_balence"></label>
+        <input asp-for="total_debit_balence" disabled />
+    </div>
+</form>
