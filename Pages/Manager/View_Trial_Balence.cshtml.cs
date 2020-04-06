@@ -25,6 +25,21 @@ namespace AppDomainProject
         [BindProperty]
         public double total_debit_balence { get; set; }
 
+        [BindProperty]
+        public double[] array { get; set; }
+
+        [BindProperty]
+        public SortedDictionary<string, double[]> table { get; set; }
+
+        [BindProperty]
+        public SortedDictionary<string, double[]> complete_list { get; set; }
+
+        [BindProperty]
+        public List<string> keys { get; set; }
+
+        [BindProperty]
+        public List<string> names { get; set; }
+
         public View_Trial_BalenceModel(AppDomainProjectContext context) : base(context)
         {
         }
@@ -42,10 +57,10 @@ namespace AppDomainProject
             //AccountTransactions = GetTransactions(trueBegin, trueEnd);
 
             // An array to hold the balence for each of the credits and debits respectfully in an account
-            double[] array = new double[2];
+            array = new double[2];
 
             // Hashtable to hold the account with balence
-            Hashtable table = new Hashtable();
+            table = new SortedDictionary<string, double[]>();
 
             //TODO FIX THE OVERRIDING VALUES IN HASHTABLE
 
@@ -56,25 +71,27 @@ namespace AppDomainProject
                 {
                     if(transaction.Credits != 0)
                     {
-                        array = (double[])table[transaction.AccountNumber];
-                        array[0] += transaction.Credits;
-                        table.Remove(transaction.AccountNumber);
-                        table.Add(transaction.AccountNumber, array);
+                        double[] new_array1 = (double[])table[transaction.AccountNumber];
+                        new_array1[0] += transaction.Credits;
+                        //table.Remove(transaction.AccountNumber);
+                        table[transaction.AccountNumber] = new_array1;
+                        //table.Add(transaction.AccountNumber, array);
                     }
                     else
                     {
-                        array = (double[])table[transaction.AccountNumber];
-                        array[1] += transaction.Debits;
-                        table.Remove(transaction.AccountNumber);
-                        table.Add(transaction.AccountNumber, array);
+                        double[] new_array2 = (double[])table[transaction.AccountNumber];
+                        new_array2[1] += transaction.Debits;
+                        //table.Remove(transaction.AccountNumber);
+                        table[transaction.AccountNumber] = new_array2;
+                        //table.Add(transaction.AccountNumber, array);
                     }
                 }
                 else
                 {
-                    array[0] = transaction.Credits;
-                    array[1] = transaction.Debits;
-                    table.Add(transaction.AccountNumber, array);
+                    double[] new_array3 = { transaction.Credits, transaction.Debits };
+                    table.Add(transaction.AccountNumber, new_array3);
                 }
+                
             }
 
             // Loop through the table to subtract credits from debits
@@ -83,20 +100,20 @@ namespace AppDomainProject
             total_debit_balence = 0;
 
             // Hold the complete list of transactions
-            Hashtable complete_list = new Hashtable();
+            complete_list = new SortedDictionary<string, double[]>();
 
-            foreach (DictionaryEntry item in table)
+            foreach (var item in table)
             {
                 temp = (double[]) item.Value;
 
                 // Credits are larger than debits
-                if (temp[0] < temp[1])
+                if (temp[1] < temp[0])
                 {
                     temp[0] = temp[0] - temp[1];
                     // update the total balence for the credits column to be displayed
                     total_credit_balence += temp[0];
                     temp[1] = 0;
-                    complete_list.Add(item.Key, temp);
+                    complete_list.Add((string)item.Key, temp);
                 }
                 // Debits are larger than credits
                 else
@@ -105,11 +122,25 @@ namespace AppDomainProject
                     // update the total balence for the debits column to be displayed
                     total_debit_balence += temp[1];
                     temp[0] = 0;
-                    complete_list.Add(item.Key, temp);
+                    complete_list.Add((string)item.Key, temp);
                 }
             }
-            return Page();
 
+            
+            keys = complete_list.Keys.Cast<string>().ToList();
+            
+            var q = from m in _context.AccountData select m;
+            Accounts = q.ToList();
+            names = new List<string>();
+            foreach (AccountData data in Accounts)
+            {
+                if (keys.Contains(data.AccountNumber))
+                {
+                    names.Add(data.AccountName);
+                }
+            }
+
+            return Page();
         }
         
         /*
