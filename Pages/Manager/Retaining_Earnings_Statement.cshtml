@@ -3,6 +3,26 @@
 @{
     ViewData["Title"] = "Retaining_Earnings_Statement";
 }
-
+@using AppDomainProject.Models;
 <h1>Retaining Earnings Statement</h1>
-<a href="/Manager">Back</a>
+@{ 
+    int count = 0;
+}
+<table class="table">
+    @foreach (string i in Model.temp)
+    {
+        <tr>
+            <td>@i</td>
+            <td>@Model.array[count]</td>
+        </tr>
+        count++;
+    }
+</table>
+<form method="post">
+    <label>Select Date</label>
+    <input asp-for="Date" />
+    <input type="submit" value="Run" />
+</form>
+
+<a href="./">Back</a>
+

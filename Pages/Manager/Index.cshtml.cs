@@ -19,6 +19,12 @@ namespace AppDomainProject.Pages.Manager
         [BindProperty]
         public string Username { get; set; }
 
+        [BindProperty]
+        public bool Expired { get; set; }
+
+        [BindProperty]
+        public DateTime expdate { get; set; }
+
 
         public IndexModel(AppDomainProjectContext context) : base(context)
         {
@@ -29,6 +35,17 @@ namespace AppDomainProject.Pages.Manager
             PersonalInfoData info = PersonalInfo;
             if (info == null)
                 return NotFound();
+
+            UserInfoData date = UserInfo;
+            DateTime today = DateTime.Today.AddDays(5);
+            int res = DateTime.Compare(today, date.PasswordExpirationDate);
+            expdate = date.PasswordExpirationDate;
+
+            if (res >= 0)
+            {
+                Expired = true;
+            }
+            else { Expired = false; }
 
             Name = $"{info.FirstName} {info.LastName}";
             Username = info.ID;

@@ -1,0 +1,76 @@
+﻿@page
+@model AppDomainProject.Pages.Manager.BalanceSheetModel
+@{
+	ViewData["Title"] = "Balance Sheet";
+}
+@using AppDomainProject.Models;
+
+<h1>Balance Sheet for @Model.Date.ToString("MMM d, yyyy")</h1>
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>ASSETS</th>
+			<th>$</th>
+			<th>LIABILITIES/EQUITY</th>
+			<th>$</th>
+		</tr>
+	</thead>
+	@for (int i = 0; i < Model.AssetAccounts.Count || i < Model.LiabilityAccounts.Count; i++)
+	{
+		<tr>
+			<td>@GetAccount(Model.AssetAccounts, i)</td>
+		
+			<td>@GetBalance(Model.AssetAccounts, i)</td>
+		
+			<td>@GetAccount(Model.LiabilityAccounts, i)</td>
+		
+			<td>@GetBalance(Model.LiabilityAccounts, i)</td>
+		</tr>
+	}
+	<thead>
+		<tr>
+			<th>Total Assets</th>
+			<th>@Model.TotalAssets.ToString("0.##")</th>
+			<th>Total Liabilities</th>
+			<th>@Model.TotalLiabilities.ToString("0.##")</th>
+		</tr>
+	</thead>
+</table>
+
+<br />
+
+<form method="post">
+	<label>Select Date</label>
+	<input asp-for="Date"/>
+	<input type="submit" value="Run"/>
+</form>
+
+<a href="./">Back</a>
+
+@functions{
+	string GetAccount(List<AccountData> accounts, int index)
+	{
+		if (index < accounts.Count)
+		{
+			return accounts[index].AccountName;
+		}
+		else
+		{
+			return "";
+		}
+	}
+
+	string GetBalance(List<AccountData> accounts, int index)
+	{
+		if (index < accounts.Count)
+		{
+			return accounts[index].Balance.ToString("0.##");
+		}
+		else
+		{
+			return "";
+		}
+	}
+}

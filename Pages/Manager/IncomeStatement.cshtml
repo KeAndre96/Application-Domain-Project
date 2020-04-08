@@ -5,5 +5,67 @@
 }
 
 <h1>Income Statement</h1>
-<a href="/Manager">Back</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Revenue</th>
+            <th>$</th>
+        </tr>
+    </thead>
+    <thead>
+        @foreach (var i in Model.Revenue)
+        {
+            <tr>
+                <td>@i.AccountName</td>
+
+                <td>@i.Balance</td>
+            </tr>
+        }
+    </thead>
+    <thead>
+        <tr>
+            <th>Total </th>
+            <th>@Model.revenue_total.ToString("0.##")</th>
+        </tr>
+    </thead>
+</table>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Expenses</th>
+            <th>$</th>
+        </tr>
+    </thead>
+    <thead>
+        @foreach (var i in Model.Expenses)
+        {
+            <tr>
+                <td>@i.AccountName</td>
+
+                <td>@i.Balance.ToString("0.##")</td>
+            </tr>
+        }
+    </thead>
+    <thead>
+        <tr>
+            <th>Total </th>
+            <th>@Model.expenses_total.ToString("0.##")</th>
+        </tr>
+    </thead>
+</table>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Net Income</th>
+            <th>@Model.net_total.ToString("0.##")</th>
+        </tr>
+    </thead>
+</table>
+<form method="post">
+    <label>Select Date</label>
+    <input asp-for="Date" />
+    <input type="submit" value="Run" />
+</form>
+
+<a href="./">Back</a>
 
