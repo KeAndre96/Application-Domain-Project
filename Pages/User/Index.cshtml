@@ -24,4 +24,15 @@
 			<p>Data of whatever here</p>
 		</div>
 	</div>
-</div>
+
+	@if (Model.Expired)
+	{
+		<div class="form-group">
+			<p>Your Password is set to expire on:  </p>
+			<input asp-for="expdate" disabled/>
+		</div>
+    }
+
+
+
+	</div>
