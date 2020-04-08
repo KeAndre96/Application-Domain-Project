@@ -1,13 +1,4 @@
 ﻿
-.pic{
-    float:left;
-}
-.container {
-    display: block;
-    width: 400px;
-    margin: 100px auto 0;
-    float:right;
-}
 
 ul {
     margin: 0;
