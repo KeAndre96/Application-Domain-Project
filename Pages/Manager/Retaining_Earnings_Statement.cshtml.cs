@@ -28,10 +28,11 @@ namespace AppDomainProject
             Date = date.HasValue ? date.Value : DateTime.Now;
 
             temp = new List<string>();
-            temp.Add("Beginning Balence");
+            temp.Add("Beginning Balance");
             temp.Add("Net Income");
             temp.Add("Less Drawings");
-            temp.Add("Ending Balence");
+            temp.Add("Ending Balance");
+            
 
             double revenue_total = 0;
             double expenses_total = 0;
