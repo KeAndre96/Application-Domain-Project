@@ -1,0 +1,46 @@
+﻿.block1 {
+    width: 100%;
+    height: 500px;
+    background-color: red;
+}
+
+.block2 {
+    width: 100%;
+    height: 350px;
+    background-color: yellow;
+}
+
+.block3 {
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    right:0px;
+}
+
+.block4 {
+    width: 100%;
+    height: 350px;
+    color: black;
+}
+
+.block5 {
+    width: 100%;
+    height: 400px;
+    color: pink;
+}
+
+.g-block-1 {
+    width: 50%;
+    float: left;
+}
+
+.g-block-2 {
+    
+    width: 50%;
+    float: right;
+}
+
+.g-block-3{
+    width: auto;
+    float: right;
+}
