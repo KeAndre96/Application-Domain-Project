@@ -13,19 +13,19 @@
             <th>Debit</th>
         </tr>
     </thead>
-    @{ 
-		int count = 0;
+    @{
+        int count = 0;
     }
     @foreach (double[] item in Model.complete_list.Values)
-	{
+    {
         List<string> temp = Model.names;
         <tr>
             <td>@temp[count]</td>
             <td>@item[0]</td>
             <td>@item[1]</td>
         </tr>
-		count++;
-	}
+        count++;
+    }
 </table>
 <form method="get">
     <div class="form-group">
@@ -37,3 +37,11 @@
         <input asp-for="total_debit_balence" disabled />
     </div>
 </form>
+
+<form method="post">
+    <label>Select Date</label>
+    <input asp-for="Date" />
+    <input type="submit" value="Run" />
+</form>
+
+<a href="./">Back</a>

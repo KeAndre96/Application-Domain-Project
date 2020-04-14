@@ -39,22 +39,59 @@ namespace AppDomainProject
             double net_total = 0;
 
 
-            var q = from AccountData a in _context.AccountData where a.TimeAccountAdded < Date select a;
+            Date = date.HasValue ? date.Value : DateTime.Now;
 
-            foreach (AccountData a in q)
+            revenue_total = 0;
+            expenses_total = 0;
+            net_total = 0;
+
+            
+
+            var q = from TransactionData a in _context.TransactionData where a.TransactionDate < Date select a;
+            Dictionary<string, double> expenses = new Dictionary<string, double>();
+            Dictionary<string, double> revenues = new Dictionary<string, double>();
+
+            foreach (TransactionData data in q)
             {
-                if (a.Statement == 0)
+                var query = from m in _context.AccountData select m;
+                query = query.Where(n => n.AccountNumber.Equals(data.AccountNumber));
+                AccountData Account = query.FirstOrDefault();
+                if (Account.AccountCategory.Equals("Revenue"))
                 {
-                    if (a.AccountCategory.Equals("Asset"))
+                    if (revenues.ContainsKey(Account.AccountName))
                     {
-                        revenue_total += a.Balance;
+                        double temp1 = data.Credits + data.Debits;
+                        revenues[Account.AccountName] = revenues[Account.AccountName] += temp1;
                     }
                     else
                     {
-                        expenses_total += a.Balance;
+                        double temp2 = data.Credits + data.Debits;
+                        revenues.Add(Account.AccountName, temp2);
+                    }
+                }
+                else
+                {
+                    if (expenses.ContainsKey(Account.AccountName))
+                    {
+                        double temp3 = data.Credits + data.Debits;
+                        expenses[Account.AccountName] = expenses[Account.AccountName] += temp3;
+                    }
+                    else
+                    {
+                        double temp4 = data.Credits + data.Debits;
+                        expenses.Add(Account.AccountName, temp4);
                     }
                 }
             }
+            foreach (var i in revenues)
+            {
+                revenue_total += i.Value;
+            }
+            foreach (var i in expenses)
+            {
+                expenses_total += i.Value;
+            }
+           
             net_total = revenue_total - expenses_total;
             array = new double[4];
             array[1] = net_total;

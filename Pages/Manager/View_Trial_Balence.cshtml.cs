@@ -6,11 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 using AppDomainProject.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections;
+using System.ComponentModel.DataAnnotations;
 
 namespace AppDomainProject
 {
     public class View_Trial_BalenceModel : AuthenticatedPageModel
     {
+        [BindProperty]
+        [DataType(DataType.Date)]
+        public DateTime Date { get; set; }
+
         [BindProperty]
         public List<TransactionData> AccountTransactions { get; set; }
 
@@ -44,13 +49,15 @@ namespace AppDomainProject
         {
         }
 
-        public IActionResult OnGet(DateTime? begin, DateTime? end)
+        public IActionResult OnGet(DateTime? date)
         {
-            DateTime trueBegin = begin.HasValue ? begin.Value : DateTime.MinValue;
-            DateTime trueEnd = end.HasValue ? end.Value : DateTime.MaxValue;
-            var query = from m in _context.TransactionData select m;
+            Date = date.HasValue ? date.Value : DateTime.Now;
+
+
+            //var query = from m in _context.TransactionData select m;
 
             // Hold all the transaction data in the dates provided into a list
+            var query = from TransactionData a in _context.TransactionData where a.TransactionDate < Date select a;
             AccountTransactions = query.ToList();
 
             // Hold all the transaction data in the dates provided into a list
@@ -142,17 +149,10 @@ namespace AppDomainProject
 
             return Page();
         }
-        
-        /*
-        private List<TransactionData> GetTransactions(DateTime start, DateTime end)
+
+        public IActionResult OnPost()
         {
-            var q = from t in _context.TransactionData join j in _context.JournalData on t.Journal equals j.ID where j.JournalStatus == JournalData.Status.approved;
-            q = q.Where(t => t.TransactionDate >= start);
-            q = q.Where(t => t.TransactionDate <= end);
-            List<TransactionData> list = q.ToList();
-            list.Sort((a, b) => { return a.TransactionDate.CompareTo(b.TransactionDate); });
-            return list;
+            return Redirect($"./View_Trial_Balence?date={Date}");
         }
-        */
     }
 }

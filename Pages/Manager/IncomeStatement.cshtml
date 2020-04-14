@@ -13,12 +13,12 @@
         </tr>
     </thead>
     <thead>
-        @foreach (var i in Model.Revenue)
+        @foreach (var i in Model.revenues)
         {
             <tr>
-                <td>@i.AccountName</td>
+                <td>@i.Key</td>
 
-                <td>@i.Balance</td>
+                <td>@i.Value</td>
             </tr>
         }
     </thead>
@@ -37,12 +37,12 @@
         </tr>
     </thead>
     <thead>
-        @foreach (var i in Model.Expenses)
+        @foreach (var i in Model.expenses)
         {
             <tr>
-                <td>@i.AccountName</td>
+                <td>@i.Key</td>
 
-                <td>@i.Balance.ToString("0.##")</td>
+                <td>@i.Value</td>
             </tr>
         }
     </thead>
