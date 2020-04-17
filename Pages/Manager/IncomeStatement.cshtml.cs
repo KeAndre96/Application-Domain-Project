@@ -61,7 +61,7 @@ namespace AppDomainProject
                 var query = from m in _context.AccountData select m;
                 query = query.Where(n => n.AccountNumber.Equals(data.AccountNumber));
                 Account = query.FirstOrDefault();
-                if (Account.AccountCategory.Equals("Revenue"))
+                if (Account.AccountCategory.Equals("Revenue") || Account.NormalSide == false)
                 {
                     if (revenues.ContainsKey(Account.AccountName))
                     {
