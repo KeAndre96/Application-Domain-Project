@@ -10,8 +10,8 @@
     <div class="form-actions no-color">
         <p>
             Find by name: <input type="text" name="SearchString" />
-            <input title=" Click to search" type="submit" value="Search" class="btn btn-primary" />
-            <a asp-action="Accounts">Back to Full List</a>
+            <input title=" Click to  bein search" type="submit" value="Search" class="btn btn-primary" />
+            <a title="Go Back to Full List" asp-action="Accounts">Back to Full List</a>
         </p>
     </div>
 </form>
@@ -33,7 +33,7 @@
             <td>@Html.DisplayFor(modelItem => a.AccountDescription)</td>
             <td>
                 <form method="post">
-                    <input type="submit" value="View" asp-route-acct=@(a.AccountNumber)/>
+                    <input title="Click to View Account Info" type="submit" value="View" asp-route-acct=@(a.AccountNumber)/>
                 </form>
             </td>
         </tr>
@@ -42,4 +42,4 @@
 </table>
 
 <br />
-<a href="/Dashboard">Back</a>
+<a title=" Go back to Dashboard" href="/Dashboard">Back </a>

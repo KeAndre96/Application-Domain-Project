@@ -9,8 +9,8 @@
 <div class="form-actions no-color">
     <p>
         Find by name: <input type="text" name="SearchString" />
-        <input type="submit" value="Search" class="btn btn-primary" />
-        <a asp-action="Journals">Back to Full List</a>
+        <input type="submit" value="Search"title="Click to Begin Searching " class="btn btn-primary" />
+        <a  title="Go Back to Full List "asp-action="Journals">Back to Full List </a>
     </p>
 </div>
 </form>
@@ -40,8 +40,8 @@
 
 </table>
 
-<a asp-page="./PendingJournals">Pending </a>
+<a title="Go to a Pending  Journal" asp-page="./PendingJournals">Pending </a>
 <br />
-<a asp-page="./Journal">New Journal</a>
+<a title="Create a New Journal" asp-page="./Journal">New Journal </a>
 <br />
-<a href="/Index">Back </a>
+<a title=" Go back to Dashboard"href="/Index">Back </a>

@@ -29,19 +29,19 @@
 </table>
 <form method="get">
     <div class="form-group">
-        <label>Total Credit Balence</label>
-        <input asp-for="total_credit_balence" disabled />
+        <label>Total Credit Balance</label>
+        <input title="Total Credit Balance" asp-for="total_credit_balence" disabled />
     </div>
     <div class="form-group">
-        <label>Total Debit Balence</label>
-        <input asp-for="total_debit_balence" disabled />
+        <label>Total Debit Balance</label>
+        <input  title="Total Debit Balance" asp-for="total_debit_balence" disabled />
     </div>
 </form>
 
 <form method="post">
-    <label>Select Date</label>
-    <input asp-for="Date" />
-    <input type="submit" value="Run" />
+    <label>tSelect Date</label>
+    <input title="Select Date" asp-for="Date" />
+    <input title="Click to Run" type="submit" value="Run" />
 </form>
 
 <form method="post">
@@ -53,4 +53,4 @@
     </span>
 </form>
 
-<a href="./">Back</a>
+<a title="Go Back to Dashboard" href="./">Back</a>
