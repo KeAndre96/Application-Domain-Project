@@ -39,7 +39,7 @@
 		@Html.DisplayFor(modelItem => u.Class)
 	</td>
 	<td>
-		@Html.DisplayFor(modelItem => u.Status) <form method="post"><input type="submit" value=@Model.GetUpdateText(u) asp-page-handler="AcctToggle" asp-route-id=@u.ID asp-route-status=@Model.GetToggleStatus(u) /></form>
+		@Html.DisplayFor(modelItem => u.Status) <form method="post"><input title="Change Status"  type="submit" value=@Model.GetUpdateText(u) asp-page-handler="AcctToggle" asp-route-id=@u.ID asp-route-status=@Model.GetToggleStatus(u) /></form>
 	</td>
 
 </tr>
@@ -94,4 +94,4 @@
 </table>
 
 <br />
-<a href="/Admin">Back</a>
+<a title="Go Back to Dashboard" href="/Admin">Back</a>

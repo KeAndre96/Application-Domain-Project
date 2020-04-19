@@ -13,10 +13,10 @@
 <h3>Transaction History</h3>
 <form method="post">
     <label>Start Date</label>
-    <input asp-for="TransactionStartDate"/>
+    <input title="Select a Start Date" asp-for="TransactionStartDate"/>
     <label>End Date</label>
-    <input asp-for="TransactionEndDate" />
-    <input type="submit" value="Go" />
+    <input title="Select a End Date" asp-for="TransactionEndDate" />
+    <input  title="Click to Submit" type="submit" value="Go" />
 
     <input hidden asp-for="acct" />
 </form>
@@ -50,7 +50,7 @@
 
 @if (Model.UserIsAdmin())
 {
-    <a href="/Admin/EditAccount/@Model.Account.AccountNumber">Edit</a>
+    <a title="Click to Edit" href="/Admin/EditAccount/@Model.Account.AccountNumber">Edit</a>
 }
 <br />
-<a href="../Accounts">Back</a>
+<a title="Go Back to Financial Accounts" href="../Accounts">Back</a>

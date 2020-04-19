@@ -10,48 +10,50 @@
 <form method="post">
     <div class="form-group">
         <label asp-for="Account.AccountName"></label>
-        <input asp-for="Account.AccountName" />
+        <input title="Edit Account Name" asp-for="Account.AccountName" />
     </div>
 
     <div class="form-group">
         <label asp-for="Account.AccountDescription"></label>
-        <input asp-for="Account.AccountDescription" />
+        <input title="Edit Account Description" asp-for="Account.AccountDescription" />
     </div>
 
     <div class="form-group">
         <label asp-for="Account.AccountCategory"></label>
-        <input asp-for="Account.AccountCategory" />
+        <input title="Edit Account Category" asp-for="Account.AccountCategory" />
     </div>
 
     <div class="form-group">
         <label asp-for="Account.AccountSubCategory"></label>
-        <input asp-for="Account.AccountSubCategory" />
+        <input title="Edit Account Subcategory" asp-for="Account.AccountSubCategory" />
     </div>
 
     <div class="form-group">
         <label asp-for="Account.InitialBalance"></label>
-        <input asp-for="Account.InitialBalance" />
+        <input title="Edit Initial Balance" asp-for="Account.InitialBalance" />
     </div>
 
     <div class="form-group">
         <label asp-for="Account.Order"></label>
-        <input asp-for="Account.Order" />
+        <input title="Edit Account Order" asp-for="Account.Order" />
     </div>
 
     <div class="form-group">
         <label asp-for="Account.Statement"></label>
-        <select asp-for="Account.Statement" asp-items="Html.GetEnumSelectList<AccountData.AccountStatement>()"></select>
+        <select title="Edit Statement Type" asp-for="Account.Statement" asp-items="Html.GetEnumSelectList<AccountData.AccountStatement>()"></select>
     </div>
 
     <div class="form-group">
         <label asp-for="Account.NormalSide"></label> <br />
-        <input type="radio" asp-for="Side" value="@Model.Sides[0]"  />@Model.Sides[0]<br />
+        <input type="radio" asp-for="Side" value="@Model.Sides[0]" />@Model.Sides[0]<br />
         <input type="radio" asp-for="Side" value="@Model.Sides[1]" />@Model.Sides[1]<br />
     </div>
 
-    <input type="submit" value="Save" />
+    <input title="Click to Save" type="submit" value="Save" />
 
     <input type="submit" value="Deactivate" title="Click to deactivate account" asp-page-handler="Deactivate" />
+    <br/>
+    <a title="Go Back to Financial Accounts" href="/User/Accounts">Back</a>
 
     <div>
         <input hidden asp-for="Account.Balance" />
@@ -63,7 +65,7 @@
         <input hidden asp-for="Account.NormalSide" />
         <input hidden asp-for="Account.AccountNumber" />
         <input hidden asp-for="Account.Active" />
-        <input hidden asp-for="before_image"/>
+        <input hidden asp-for="before_image" />
     </div>
 </form>
 
