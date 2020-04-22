@@ -4,6 +4,10 @@
 	ViewData["Title"] = "Dashboard";
 }
 
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+	<p class="text-warning">@Model.Message</p>
+}
 <h1>Welcome, @Model.Name</h1>
 <br />
 <img src="~/Images/img_avatar.png" alt="placeholder" width="150" height="150">

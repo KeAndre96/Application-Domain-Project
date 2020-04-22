@@ -24,7 +24,9 @@ namespace AppDomainProject.Pages.Manager
 
         [BindProperty]
         public DateTime expdate { get; set; }
-
+        
+        [BindProperty]
+        public string Message { get; private set; }
 
         public IndexModel(AppDomainProjectContext context) : base(context)
         {
@@ -49,7 +51,31 @@ namespace AppDomainProject.Pages.Manager
 
             Name = $"{info.FirstName} {info.LastName}";
             Username = info.ID;
+            CheckJournals();
             return Page();
         }
+
+        private void CheckJournals()
+        {
+            var q = from j in _context.JournalData where j.JournalStatus == JournalData.Status.incomplete where j.usetID == UserInfo.ID select j;
+            int unfinishedJournals = q.Count();
+            if (unfinishedJournals > 0)
+            {
+                Message = $"You have {unfinishedJournals} unsubmitted journal{(unfinishedJournals > 1 ? "s" : "")}\n";
+            }
+            else
+            {
+                Message = "";
+            }
+
+            var q2 = from j in _context.JournalData where j.JournalStatus == JournalData.Status.pending select j;
+            int pendingJournals = q2.Count();
+            if(pendingJournals > 0)
+            {
+                Message += $"There {(pendingJournals > 1 ? "are" : "is")} {pendingJournals}  journal{(pendingJournals> 1 ? "s" : "")} awaiting review";
+            }
+        }
+
+
     }
 }
