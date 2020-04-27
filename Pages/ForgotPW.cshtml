@@ -17,7 +17,6 @@
                 <label asp-for="Id" class="control-label"></label>
                 <input asp-for="Id" class="control-label" />
             </div>
-
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="control-label" />
@@ -29,6 +28,9 @@
             </div>
         </div>
     </form>
+    <div class="popover">
+        <span class="popuptext" id="noEmailID" style="visibility:collapse; color:red; text-align:center">"Please enter in the username and email</span>
+    </div>
     <div align="right" valign="bottom">
         <input title="click here for help" type="submit" value="Help" class="btn btn-danger" asp-page="HelpPages/Help" />
     </div>
@@ -63,7 +65,7 @@
             </div>
         </div>
     </form>
-    
+
 }
 
 @if (Model.PageState == 2)
@@ -89,6 +91,6 @@
                 <input asp-page-handler="FinishNewPW" type="submit" value="Send" class="btn btn-primary" />
             </div>
         </div>
-        
+
     </form>
 }

@@ -78,7 +78,14 @@ namespace AppDomainProject.Pages
             //then proceed to two lines below 
             tempID = Id;
             PageState++;
-            return Redirect("./ForgotPW?pageState=" + PageState);
+
+            if (String.IsNullOrEmpty(tempID)){
+                return Redirect("./ForgotPW?pageState=" + 0);
+            }
+            else{
+                return Redirect("./ForgotPW?pageState=" + PageState);
+            }
+            
         }
 
         public ActionResult OnPostSecQuestionsCancel()
@@ -115,6 +122,7 @@ namespace AppDomainProject.Pages
             return Redirect("./Index");
         }
         */
+        /*
           public async Task<IActionResult> OnPost()
          {
              if (await ValidateAsync())
@@ -140,6 +148,6 @@ namespace AppDomainProject.Pages
              UserInfoData user = users[0];
              return user.Email.Equals(Email);
          }
-        
+        */
     }
 }
