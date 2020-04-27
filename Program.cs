@@ -23,7 +23,6 @@ namespace AppDomainProject
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-
        
     }
 
