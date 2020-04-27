@@ -5,11 +5,6 @@
 }
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-
-@if (!string.IsNullOrEmpty(Model.Message))
-{
-	<p class="text-warning">@Model.Message</p>
-}
 <h1>Welcome, @Model.Name</h1>
 <br />
 <img src="~/Images/img_avatar.png" alt="placeholder" width="150" height="150">
@@ -28,6 +23,12 @@
 		<br />
 		<a asp-page="/EventLog"><img src="~/Images/Event.png" style="margin:0 auto; height:20px" />View Event Log</a>
 		<br />
+		<br />
+		<b style="color:#ffc107; font-size:20px">Notifications</b>
+		@if (!string.IsNullOrEmpty(Model.Message))
+		{
+			<p class="text-warning">@Model.Message</p>
+		}
 	</div>
 	<div class="v1" style="border-left: 2px solid black"></div>
 	<div class="col-6">
